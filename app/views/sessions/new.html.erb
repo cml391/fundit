@@ -1,0 +1,27 @@
+<%= form_tag nil, :class => 'form-horizontal' do |f| %>
+  <div class="control-group">
+    <%= label_tag :email, 'Email', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :email, params[:email], :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= label_tag :password, 'Password', :class => 'control-label' %>
+    <div class="controls">
+      <%= password_field_tag :password, '', :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag nil, :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', organizations_path, :class => 'btn' %>
+  </div>
+
+  <p>
+    <%= link_to 'Register As Volunteer', new_volunteer_path %>
+  </p>
+
+  <p>
+    <%= link_to 'Register As Organization', new_organization_path %>
+  </p>
+<% end %>

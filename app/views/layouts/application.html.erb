@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "FundIt" %></title>
+    <%= csrf_meta_tags %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+    <%= favicon_link_tag 'images/favicon.ico', :rel => 'shortcut icon' %>
+  </head>
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">FundIt</a>
+
+          <ul class="nav">
+            <li><%= link_to "Organizations", organizations_path %></li>
+            <% if current_user.kind_of? Organization %>
+              <li><%= link_to "Create Event", new_organization_event_path(current_user)  %></li>
+            <% end %>
+          </ul>
+
+          <% if current_user %>
+            <p class="navbar-text pull-right">
+              <% if current_user.kind_of? Volunteer %>
+                Logged in as <%= link_to current_user.name, volunteer_path(current_user) %>.
+              <% else %>
+                Logged in as <%= link_to current_user.name, organization_path(current_user) %>.
+              <% end %>
+              <%= link_to 'Log Out.', logout_path, :method => 'delete' %>
+            </p>
+          <% else %>
+              <p class="navbar-text pull-right">
+                <%= link_to 'Log In / Register', login_path %>
+              </p>
+          <% end %>
+
+          </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <% if flash[:alert] %>
+          <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+
+        <% if flash[:notice] %>
+          <div class="alert">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+
+        <%= yield %>
+      </div>
+
+    </div>
+
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+
+  </body>
+</html>

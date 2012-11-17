@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1><%= @organization.name %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Email:</strong></dt>
+  <dd><%= @organization.email %></dd>
+  <dt><strong>Bio:</strong></dt>
+  <dd><%= @organization.bio %></dd>
+</dl>
+
+<h2>Events</h2>
+<ul>
+    <% @organization.events.each do |event| %>
+        <li><%= link_to event.name, organization_event_path(@organization, event) %></li>
+    <% end %>
+</ul>
+
+<div class="form-actions">
+  <%= link_to 'Back', organizations_path, :class => 'btn'  %>
+  <% if current_user == @organization %>
+    <%= link_to 'Edit Organization', edit_organization_path(@organization), :class => 'btn' %>
+  <% end %>
+</div>

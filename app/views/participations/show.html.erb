@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h1><%= @participation.volunteer.name%> is participating in <%= @participation.event.name %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Note:</strong></dt>
+  <dd><%= @participation.note %></dd>
+  <dt><strong>Goal:</strong></dt>
+  <dd><%= @participation.goal %></dd>
+</dl>
+
+<div class="form-actions">
+  <% if @participation.volunteer == current_user %>
+    <%= link_to 'Edit', edit_volunteer_participation_path(@participation.volunteer, @participation), :class => 'btn' %>
+  <% end %>
+  <%= link_to 'Donate', donate_volunteer_participation_path(@participation.volunteer, @participation), :class => 'btn' %>
+</div>

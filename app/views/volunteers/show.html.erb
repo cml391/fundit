@@ -1,0 +1,21 @@
+<div class="page-header">
+  <h1><%= @volunteer.name %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Email:</strong></dt>
+  <dd><%= @volunteer.email %></dd>
+</dl>
+
+<h2>Participating in</h2>
+<ul>
+    <% @volunteer.participations.each do |participation| %>
+        <li><%= link_to participation.event.name, volunteer_participation_path(participation.volunteer, participation) %></li>
+    <% end %>
+</ul>
+
+<div class="form-actions">
+  <% if @volunteer == current_user %>
+    <%= link_to 'Edit', edit_volunteer_path(@volunteer), :class => 'btn' %>
+  <% end %>
+</div>

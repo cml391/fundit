@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h1><%= @event.name %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Name:</strong></dt>
+  <dd><%= @event.name %></dd>
+  <dt><strong>Description:</strong></dt>
+  <dd><%= @event.description %></dd>
+</dl>
+
+<h2>Participants</h2>
+<ul>
+    <% @event.volunteers.each do |volunteer| %>
+        <li><%= link_to volunteer.name, volunteer_path(volunteer) %></li>
+    <% end %>
+</ul>
+
+<div class="form-actions">
+  <% if @event.organization == current_user %>
+    <%= link_to 'Edit Event', edit_organization_event_path(@event.organization, @event), :class => 'btn' %>
+  <% elsif !(current_user.kind_of? Organization) %>
+    <%= link_to 'Participate', new_volunteer_participation_path(current_user || 0, :event_id => @event.id), :class => 'btn' %>
+  <% end %>
+</div>

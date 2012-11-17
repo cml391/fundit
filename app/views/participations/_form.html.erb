@@ -1,0 +1,34 @@
+<% if @participation.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@participation.errors.count, "error") %> prohibited this participation from being saved:</h2>
+
+    <ul>
+    <% @participation.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for [current_user, @participation], :html => { :class => 'form-horizontal' } do |f| %>
+
+  <% if params[:event_id] %>
+    <%= hidden_field_tag 'event_id', params[:event_id] %>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :note, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :note, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :goal, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :goal, :class => 'number_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="page-header">
+  <h1>Organizations</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= organization.id %></td>
+        <td><%= link_to organization.name, organization_path(organization) %></td>
+        <td><%= organization.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
