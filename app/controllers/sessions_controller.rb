@@ -15,9 +15,7 @@ class SessionsController < ApplicationController
       # We found the user, and the password was correct. Log them in.
       session[:user_id] = user.id
       session[:user_type] = user.class.to_s
-      redir_target = session[:return_to] || root_url
-      session[:return_to] = nil
-      redirect_to redir_target, :notice => "Welcome, #{user.name}"
+      redirect_after_login
     else
       # Couldn't find the email, or password was invalid. Send the user
       # back to the login page with an error message.

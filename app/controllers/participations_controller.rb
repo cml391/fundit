@@ -18,6 +18,14 @@ class ParticipationsController < ApplicationController
   # GET /volunteers/1/participations/new
   # GET /volunteers/1/participations/new.json
   def new
+    # if the volunteer id is 0, it means the user tried to participate while
+    # logged out, got redirected to login, and then redirected back. Redirect
+    # them to the right url.
+    puts params[:volunteer_id]
+    if params[:volunteer_id] == '0'
+      return redirect_to new_volunteer_participation_url(current_user, request.query_parameters)
+    end
+
     @participation = Participation.new
 
     respond_to do |format|

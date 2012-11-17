@@ -47,7 +47,7 @@ class OrganizationsController < ApplicationController
       if @organization.save
         session[:user_id] = @organization.id
         session[:user_type] = 'Organization'
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
+        format.html { redirect_after_login }
         format.json { render json: @organization, status: :created, location: @organization }
       else
         format.html { render action: "new" }

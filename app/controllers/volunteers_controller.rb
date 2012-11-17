@@ -40,7 +40,7 @@ class VolunteersController < ApplicationController
       if @volunteer.save
         session[:user_id] = @volunteer.id
         session[:user_type] = 'Volunteer'
-        format.html { redirect_to @volunteer, notice: 'Volunteer was successfully created.' }
+        format.html { redirect_after_login }
         format.json { render json: @volunteer, status: :created, location: @volunteer }
       else
         format.html { render action: "new" }
