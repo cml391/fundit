@@ -23,7 +23,6 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'sqlite3'
   gem 'pry'
-  gem 'factory_girl_rails'
   gem 'shoulda-matchers'
 end
 
