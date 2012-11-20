@@ -1,24 +1,38 @@
 <div class="page-header">
+  <img class="profilepic" src="https://twimg0-a.akamaihd.net/profile_images/1734332875/P1870637-cropped.jpg" />
   <h1><%= @organization.name %></h1>
+
+  <div class="toolbar">
+    <!-- <%= link_to 'Back', organizations_path, :class => 'btn'  %> -->
+    <% if current_user == @organization %>
+      <%= link_to 'Edit Organization', edit_organization_path(@organization), :class => 'btn' %>
+    <% end %>
+  </div>
+
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong>Email:</strong></dt>
-  <dd><%= @organization.email %></dd>
-  <dt><strong>Bio:</strong></dt>
-  <dd><%= @organization.bio %></dd>
-</dl>
+<dl class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="biobox">
+        <strong>About <%= @organization.name %></strong><br />
+        <%= @organization.bio %>
+        <br /><br />
+        <strong>Email</strong><br />
+        <i><%= @organization.email %></i>
+      </div>
+    </div>
 
-<h2>Events</h2>
-<ul>
-    <% @organization.events.each do |event| %>
-        <li><%= link_to event.name, organization_event_path(@organization, event) %></li>
-    <% end %>
-</ul>
+    <div class="span8">
+      <div class="eventsbox">
+        <h2>Upcoming Events</h2>
+        <% @organization.events.each do |event| %>
+        <div class="event">
+            <%= link_to event.name, organization_event_path(@organization, event) %>
+        </div>
+        <% end %>
+      </div>
+    </div>
 
-<div class="form-actions">
-  <%= link_to 'Back', organizations_path, :class => 'btn'  %>
-  <% if current_user == @organization %>
-    <%= link_to 'Edit Organization', edit_organization_path(@organization), :class => 'btn' %>
-  <% end %>
+  </div>
 </div>
