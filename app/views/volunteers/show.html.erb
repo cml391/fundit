@@ -1,21 +1,37 @@
 <div class="page-header">
+  <img class="profilepic" src="https://twimg0-a.akamaihd.net/profile_images/1734332875/P1870637-cropped.jpg" />
   <h1><%= @volunteer.name %></h1>
+
+  <div class="toolbar">
+    <!-- <%= link_to 'Back', volunteers_path, :class => 'btn'  %> -->
+  <% if @volunteer == current_user %>
+    <%= link_to 'Edit Profile', edit_volunteer_path(@volunteer), :class => 'btn' %>
+  <% end %>
+  </div>
+
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong>Email:</strong></dt>
-  <dd><%= @volunteer.email %></dd>
-</dl>
+<dl class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+      <div class="biobox">
+        <strong>About <%= @volunteer.name %></strong>
+        <br /><br />
+        <strong>Email</strong><br />
+        <i><%= @volunteer.email %></i>
+      </div>
+    </div>
 
-<h2>Participating in</h2>
-<ul>
-    <% @volunteer.participations.each do |participation| %>
-        <li><%= link_to participation.event.name, volunteer_participation_path(participation.volunteer, participation) %></li>
-    <% end %>
-</ul>
+    <div class="span8">
+      <div class="eventsbox">
+        <h2>Participated in</h2>
+        <% @volunteer.participations.each do |event| %>
+        <div class="event">
+            <%= link_to participation.event.name, volunteer_participation_path(participation.volunteer, participation) %>
+        </div>
+        <% end %>
+      </div>
+    </div>
 
-<div class="form-actions">
-  <% if @volunteer == current_user %>
-    <%= link_to 'Edit', edit_volunteer_path(@volunteer), :class => 'btn' %>
-  <% end %>
+  </div>
 </div>
