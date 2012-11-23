@@ -145,6 +145,7 @@ DEPENDENCIES
   jquery-rails
   pg
   pry
+  rack-ssl
   rails (= 3.2.7)
   rest-client
   rspec-rails
