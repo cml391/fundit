@@ -11,8 +11,8 @@
 
 <h2>Participants</h2>
 <ul>
-    <% @event.volunteers.each do |volunteer| %>
-        <li><%= link_to volunteer.name, volunteer_path(volunteer) %></li>
+    <% @event.participations.each do |participation| %>
+        <li><%= link_to participation.volunteer.name, volunteer_participation_path(participation.volunteer, participation) %></li>
     <% end %>
 </ul>
 

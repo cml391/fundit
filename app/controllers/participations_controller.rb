@@ -78,13 +78,24 @@ class ParticipationsController < ApplicationController
   # GET /volunteers/1/participations/1
   # GET /volunteers/1/participations/1.json
   def donate_form
-    # TODO: implement
+    @donation = Donation.new
   end
 
   # POST /volunteers/1/participations/1
   # POST /volunteers/1/participations/1.json
   def donate
-    # TODO: implement
+    @donation = Donation.new(params[:donation])
+    @donation.participation = @participation
+
+    respond_to do |format|
+      if @donation.save
+        format.html { redirect_to volunteer_participation_url(@participation.volunteer, @participation), notice: 'Donation was successful. Thank you for your contribution.' }
+        format.json { render json: @donation, status: :created, location: @donation }
+      else
+        format.html { render action: "donate_form" }
+        format.json { render json: @donation.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
