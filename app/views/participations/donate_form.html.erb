@@ -1,1 +1,62 @@
-<p>TODO: implement</p>
+<div class="page-header">
+  <h1>Donate to <%= @participation.volunteer.name%> in <%= @participation.event.name %></h1>
+</div>
+
+<%= form_for @donation, :url => donate_volunteer_participation_path(@participation.volunteer, @participation),
+                        :html => { :class => 'form-horizontal donate-form', :id => 'stripe-payment-form' } do |f| %>
+
+  <div class="alert alert-error alert-block" style="<%=(@donation.errors.any? ? '' : 'display: none')%>">
+    <% if @donation.errors.any? %>
+      <h4><%= pluralize(@donation.errors.count, "error") %> while checking out:</h4>
+      <ul>
+        <% @donation.errors.full_messages.each do |msg| %>
+          <li><%= msg %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Donation Amount</label>
+    <div class="controls">
+      <div class="input-prepend input-append">
+        <span class="add-on">$</span>
+        <%= f.text_field :amount, :size => 4, :class => 'input-mini amount-input' %>
+        <span class="add-on">.00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Card Number</label>
+    <div class="controls">
+      <input type="text" size="20" autocomplete="off" class="card-number" />
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">CVC</label>
+    <div class="controls">
+      <input type="text" size="4" autocomplete="off" class="card-cvc input-mini" />
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Expiration</label>
+    <div class="controls">
+      <input type="text" size="2" autocomplete="off" class="card-expiry-month input-mini" placeholder="MM" />
+      /
+      <input type="text" size="4" autocomplete="off" class="card-expiry-year input-mini" placeholder="YYYY" />
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit 'Donate', :class => 'btn btn-primary submit-button' %>
+    <%= link_to 'Cancel', volunteer_participation_url(@participation.volunteer, @participation), :class => 'btn' %>
+  </div>
+<% end %>
+
+<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+<script type="text/javascript">
+  Stripe.setPublishableKey("<%= STRIPE_KEYS['pub_key'] %>");
+</script>

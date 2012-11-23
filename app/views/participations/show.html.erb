@@ -2,6 +2,11 @@
   <h1><%= @participation.volunteer.name%> is participating in <%= @participation.event.name %></h1>
 </div>
 
+<p>
+    <%= link_to "More about this volunteer &raquo;".html_safe, volunteer_path(@participation.volunteer) %>
+    <br />
+    <%= link_to "More about this event &raquo;".html_safe, organization_event_path(@participation.event.organization, @participation.event) %>
+</p>
 <dl class="dl-horizontal">
   <dt><strong>Note:</strong></dt>
   <dd><%= @participation.note %></dd>

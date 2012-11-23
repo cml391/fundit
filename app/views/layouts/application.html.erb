@@ -14,9 +14,9 @@
 
     <%= stylesheet_link_tag "application", :media => "all" %>
   </head>
-  <body>
+  <body class="<%= controller.controller_name %> <%= controller.action_name %>">
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="/">FundIt</a>
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container content-container">
       <div class="content">
         <% if flash[:alert] %>
           <div class="alert alert-error">
@@ -66,6 +66,12 @@
         <%= yield %>
       </div>
 
+    </div>
+
+    <div class="container footer">
+      Created for <a href="https://stellar.mit.edu/S/course/6/fa12/6.170/">6.170</a>
+      by Ben Weissmann, Joanna Kao, and Cristina Lozano. Source on
+      <a href="https://github.com/6170/qwerty">GitHub</a>.
     </div>
 
     <!-- Javascripts

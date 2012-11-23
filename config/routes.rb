@@ -6,8 +6,8 @@ Fundit::Application.routes.draw do
   resources :volunteers do
     resources :participations do
       member do
-        get 'donate_form', :as => 'donate'
-        post 'donate', :as => 'submit_donation'
+        get 'donate', :as => 'donate', :action => 'donate_form'
+        post 'donate'
       end
     end
   end
