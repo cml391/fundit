@@ -40,7 +40,7 @@ Donations =
             # token contains id, last4, and card type
             token = response['id'];
             # insert the token into the form so it gets submitted to the server
-            form.append("<input type='hidden' name='donations[stripe_token]' value='#{token}'/>");
+            form.append("<input type='hidden' name='donation[stripe_token]' value='#{token}'/>");
             # and submit
             form.get(0).submit();
 
