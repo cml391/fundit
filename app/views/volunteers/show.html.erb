@@ -25,7 +25,7 @@
     <div class="span8">
       <div class="eventsbox">
         <h2>Participated in</h2>
-        <% @volunteer.participations.each do |event| %>
+        <% @volunteer.participations.each do |participation| %>
         <div class="event">
             <%= link_to participation.event.name, volunteer_participation_path(participation.volunteer, participation) %>
         </div>
