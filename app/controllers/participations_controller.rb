@@ -8,7 +8,9 @@ class ParticipationsController < ApplicationController
   # GET /volunteers/1/participations/1.json
   def show
     @participation = Participation.find(params[:id])
-    @offline_perc = @participation.donation_sum
+
+    # TODO: update once we have offline donations
+    @offline_perc = 0
     @online_perc = @participation.donation_percent
 
     respond_to do |format|
