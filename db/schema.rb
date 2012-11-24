@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115212711) do
+ActiveRecord::Schema.define(:version => 20121124042002) do
 
   create_table "donations", :force => true do |t|
     t.integer  "participation_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20121115212711) do
     t.text     "bio"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "stripe_pub_key"
   end
 
   create_table "participations", :force => true do |t|

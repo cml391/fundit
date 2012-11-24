@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   before_filter :require_organization, :only => [:edit, :update]
-  before_filter :find_organization, :except => [:index, :new, :create]
+  before_filter :find_organization, :except => [:index, :new, :create, :new_stripe]
   before_filter :require_ownership, :only => [:edit, :update]
 
   # GET /organizations
@@ -21,6 +21,11 @@ class OrganizationsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @organization }
     end
+  end
+
+  # GET /organizations/new_stripe
+  # prompts the user to connect to Stripe
+  def new
   end
 
   # GET /organizations/new

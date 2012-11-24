@@ -16,13 +16,13 @@ class Donation < ActiveRecord::Base
   # Charges the donor via Stripe
   def charge_donor
     begin
-      Stripe::Charge.create(
+      Stripe::Charge.create({
         # amount is in dollars, stripe takes cents
         :amount => self.amount * 100,
         :currency => "usd",
         :card => self.stripe_token,
         :description => "Donation to #{participation.volunteer.name} for #{participation.event.name}"
-      )
+      }, self.participation.event.organization.stripe_token)
       return true
     rescue Stripe::StripeError => e
       # Something went wrong. Report that billing failed.
