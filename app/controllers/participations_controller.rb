@@ -10,6 +10,7 @@ class ParticipationsController < ApplicationController
     @participation = Participation.find(params[:id])
     @offline_perc = @participation.donation_sum
     @online_perc = @participation.donation_percent
+    @donation = Donation.new
 
     respond_to do |format|
       format.html # show.html.erb

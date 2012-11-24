@@ -1,51 +1,119 @@
 <head>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 	<%= javascript_include_tag "participations"%>
-	<script type="text/javascript">
-   		var online_perc = <%= @online_perc %>
-   		var offline_perc = <%= @offline_perc %>;
-   		$(document).ready(progressBar(online_perc, offline_perc));
-	</script>
 </head>
 <body>
-<div class="page-header">
-  <h1><%= @participation.volunteer.name%> is participating in <%= @participation.event.name %></h1>
+<div class="page-header" id="participationHeader">
+  <h1 >Support <%= @participation.volunteer.name%></h1>
+  <h2><%= @participation.volunteer.name%> is participating in <%= @participation.event.name%></h2>
 </div>
 
-<p>
-    <%= link_to "More about this volunteer &raquo;".html_safe, volunteer_path(@participation.volunteer) %>
-    <br />
-    <%= link_to "More about this event &raquo;".html_safe, organization_event_path(@participation.event.organization, @participation.event) %>
-</p>
-<dl class="dl-horizontal">
-  <dt><strong>Note:</strong></dt>
-  <dd><%= @participation.note %></dd>
-  <dt><strong>Goal:</strong></dt>
-  <dd><%= @participation.goal %></dd>
-</dl>
-
-<div class="container">
-		<div class="row">
-			<div class="span10 offset1">
-				<div class="progress"> 
-					<div class="bar bar-success" style="width: 0%;"></div>
-					<div class="bar bar-warning" style="width: 0%;"></div>
+<div class="container-fluid">
+  <div class="row-fluid">
+		<div class="span7">
+			<div class="row">
+				<div class="span1 statistic offset1">
+					<small> Raised </small>
+					<div class="row">
+						<div class="span1">
+							<strong> $<%= @participation.donation_sum %> </strong>
+						</div>
+					</div>
+				</div>
+				<div class="span1 statistic offset1">
+					<small> Goal </small>
+					<div class="row">
+						<div class="span1">
+							<strong> $<%= @participation.goal %> </strong>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span10 offset1">
+					<div class="progress"> 
+						<div class="bar bar-success" id="onlineBar"></div>
+						<div class="bar bar-warning" id="offlineBar"></div>
+					</div>
+				</div>
+			</div>
+			<div class = "biobox" >
+				<strong>A Message From <%= @participation.volunteer.name%></strong>
+				<p><%= @participation.note %></p>
+				<div class="row">
+				<div class="span6">
+					<strong><%= link_to "More about this volunteer &raquo;".html_safe, volunteer_path(@participation.volunteer) %></strong>
+				</div>
+				<div class="span6">
+					<strong><%= link_to "More about this event &raquo;".html_safe, organization_event_path(@participation.event.organization, @participation.event) %></strong>
+				</div>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-		<div class="span1 offset1">
-			<strong> $0 </strong>
-		</div>
-		<div class="span1 offset8 pagination-right">
-			<strong> $<%= @participation.goal %> </strong>
+		<div class="span5 form-actions" id="donationForm">
+			<h2 id="donateHeader"> Donate Now! </h2>
+		
+			<%= form_for @donation, :url => donate_volunteer_participation_path(@participation.volunteer, @participation),
+                        :html => { :class => 'form-horizontal donate-form', :id => 'stripe-payment-form' } do |f| %>
+
+			<div class="alert alert-error alert-block" style="<%=(@donation.errors.any? ? '' : 'display: none')%>">
+				<% if @donation.errors.any? %>
+					<h4><%= pluralize(@donation.errors.count, "error") %> while checking out:</h4>
+					<ul>
+						<% @donation.errors.full_messages.each do |msg| %>
+							<li><%= msg %>
+						<% end %>
+					</ul>
+				<% end %>
+			</div>
+		
+			<div class="control-group">
+				<label class="control-label">Donation Amount</label>
+				<div class="controls">
+					<div class="input-prepend input-append">
+						<span class="add-on">$</span>
+						<%= f.text_field :amount, :size => 4, :class => 'input-mini amount-input' %>
+						<span class="add-on">.00</span>
+					</div>
+				</div>
+			</div>
+		
+			<div class="control-group">
+				<label class="control-label">Card Number</label>
+				<div class="controls">
+					<input type="text" size="20" autocomplete="off" class="card-number" />
+				</div>
+			</div>
+		
+			<div class="control-group">
+				<label class="control-label">CVC</label>
+				<div class="controls">
+					<input type="text" size="4" autocomplete="off" class="card-cvc input-mini" />
+				</div>
+			</div>
+		
+			<div class="control-group">
+				<label class="control-label">Expiration</label>
+				<div class="controls">
+					<input type="text" size="2" autocomplete="off" class="card-expiry-month input-mini" placeholder="MM" maxlength="2"/>
+					/
+					<input type="text" size="4" autocomplete="off" class="card-expiry-year input-mini" placeholder="YYYY" maxlength="4"/>
+					
+				</div>
+			</div>
+			
+			<div class="control-group form-actions">
+				<%= f.submit 'Donate', :class => 'btn btn-primary submit-button' %>
+			</div>
+		<% end %>
 		</div>
 	</div>
-
-<div class="form-actions">
-  <% if @participation.volunteer == current_user %>
-    <%= link_to 'Edit', edit_volunteer_participation_path(@participation.volunteer, @participation), :class => 'btn' %>
-  <% end %>
-  <%= link_to 'Donate', donate_volunteer_participation_path(@participation.volunteer, @participation), :class => 'btn' %>
 </div>
+
+<script type="text/javascript">
+		var online_perc = <%= @online_perc %>;
+		//var offline_perc = <%= @offline_perc %>;
+		$('#onlineBar').css('width', (online_perc)+'%');
+		//$('#offlineBar').css('width', (offline_perc)+'%');
+</script>
 </body>
