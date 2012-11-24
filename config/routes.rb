@@ -1,5 +1,9 @@
 Fundit::Application.routes.draw do
   resources :organizations do
+    collection do
+      get 'new_stripe'
+    end
+
     resources :events
   end
 

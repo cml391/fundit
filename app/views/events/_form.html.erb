@@ -18,6 +18,14 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :date, :class => 'date-input span2', :id => 'foo',
+                       "data-date" => @event.date ? @event.date.strftime : Date.today.strftime,
+                       "data-date-format" => "yyyy-mm-dd" %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_area :description, :class => 'text_area' %>

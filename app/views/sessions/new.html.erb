@@ -1,3 +1,7 @@
+<div class="page-header">
+  <h1>Log In</h1>
+</div>
+
 <%= form_tag nil, :class => 'form-horizontal' do |f| %>
   <div class="control-group">
     <%= label_tag :email, 'Email', :class => 'control-label' %>
@@ -22,6 +26,6 @@
   </p>
 
   <p>
-    <%= link_to 'Register As Organization', new_organization_path %>
+    <%= link_to 'Register As Organization', new_stripe_organizations_path %>
   </p>
 <% end %>

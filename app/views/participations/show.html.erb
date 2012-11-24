@@ -1,8 +1,3 @@
-<head>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-	<%= javascript_include_tag "participations"%>
-</head>
-<body>
 <div class="page-header" id="participationHeader">
   <h1 >Support <%= @participation.volunteer.name%></h1>
   <h2><%= @participation.volunteer.name%> is participating in <%= @participation.event.name%></h2>
@@ -110,10 +105,11 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-		var online_perc = <%= @online_perc %>;
-		//var offline_perc = <%= @offline_perc %>;
-		$('#onlineBar').css('width', (online_perc)+'%');
-		//$('#offlineBar').css('width', (offline_perc)+'%');
-</script>
-</body>
+<% content_for :additional_scripts do %>
+    <script type="text/javascript">
+			var online_perc = <%= @online_perc %>;
+			//var offline_perc = <%= @offline_perc %>;
+			$('#onlineBar').css('width', (online_perc)+'%');
+			//$('#offlineBar').css('width', (offline_perc)+'%');
+    </script>
+<% end %>

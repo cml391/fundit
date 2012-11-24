@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115212711) do
+ActiveRecord::Schema.define(:version => 20121124200053) do
 
   create_table "donations", :force => true do |t|
     t.integer  "participation_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20121115212711) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "name"
+    t.date     "date"
   end
 
   create_table "organizations", :force => true do |t|
@@ -36,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20121115212711) do
     t.text     "bio"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "stripe_pub_key"
+    t.string   "avatar_url"
   end
 
   create_table "participations", :force => true do |t|
@@ -53,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20121115212711) do
     t.string   "password_digest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "avatar_url"
   end
 
 end

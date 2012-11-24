@@ -23,6 +23,15 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :avatar_url, "Profile Image", :class => 'control-label' %>
+    <div class="controls">
+      <a class="btn filepicker-btn">Pick a file</a>
+      <br /><br />
+      <%= profile_image_tag_for @volunteer %>
+      <%= f.hidden_field :avatar_url, :id => 'avatar_url_field' %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :password, :class => 'control-label' %>
     <div class="controls">
       <%= f.password_field :password, :class => 'text_field' %>
