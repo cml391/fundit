@@ -6,7 +6,7 @@
   <dt><strong>Name:</strong></dt>
   <dd><%= @event.name %></dd>
   <dt><strong>Date:</strong></dt>
-  <dd><%= @event.date.strftime('%B %d, %Y') %></dd>
+  <dd><%= @event.date ? @event.date.strftime('%B %d, %Y') : 'none' %></dd>
   <dt><strong>Description:</strong></dt>
   <dd><%= @event.description %></dd>
 </dl>
