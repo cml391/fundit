@@ -8,6 +8,8 @@ class ParticipationsController < ApplicationController
   # GET /volunteers/1/participations/1.json
   def show
     @participation = Participation.find(params[:id])
+    @offline_perc = @participation.donation_sum
+    @online_perc = @participation.donation_percent
 
     respond_to do |format|
       format.html # show.html.erb

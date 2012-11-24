@@ -1,3 +1,13 @@
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<%= javascript_include_tag "participations"%>
+	<script type="text/javascript">
+   		var online_perc = <%= @online_perc %>
+   		var offline_perc = <%= @offline_perc %>;
+   		$(document).ready(progressBar(online_perc, offline_perc));
+	</script>
+</head>
+<body>
 <div class="page-header">
   <h1><%= @participation.volunteer.name%> is participating in <%= @participation.event.name %></h1>
 </div>
@@ -14,9 +24,28 @@
   <dd><%= @participation.goal %></dd>
 </dl>
 
+<div class="container">
+		<div class="row">
+			<div class="span10 offset1">
+				<div class="progress"> 
+					<div class="bar bar-success" style="width: 0%;"></div>
+					<div class="bar bar-warning" style="width: 0%;"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+		<div class="span1 offset1">
+			<strong> $0 </strong>
+		</div>
+		<div class="span1 offset8 pagination-right">
+			<strong> $<%= @participation.goal %> </strong>
+		</div>
+	</div>
+
 <div class="form-actions">
   <% if @participation.volunteer == current_user %>
     <%= link_to 'Edit', edit_volunteer_participation_path(@participation.volunteer, @participation), :class => 'btn' %>
   <% end %>
   <%= link_to 'Donate', donate_volunteer_participation_path(@participation.volunteer, @participation), :class => 'btn' %>
 </div>
+</body>
