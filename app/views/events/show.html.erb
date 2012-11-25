@@ -1,22 +1,28 @@
-<div class="page-header">
+<div class="page-header center-header">
   <h1><%= @event.name %></h1>
+  <h2 class="nonBoldHeader">Run by <%= @event.organization.name%> </h2>
 </div>
-
-<dl class="dl-horizontal">
-  <dt><strong>Name:</strong></dt>
-  <dd><%= @event.name %></dd>
-  <dt><strong>Date:</strong></dt>
-  <dd><%= @event.date ? @event.date.strftime('%B %d, %Y') : 'none' %></dd>
-  <dt><strong>Description:</strong></dt>
-  <dd><%= @event.description %></dd>
-</dl>
-
-<h2>Participants</h2>
-<ul>
-    <% @event.participations.each do |participation| %>
-        <li><%= link_to participation.volunteer.name, volunteer_participation_path(participation.volunteer, participation) %></li>
-    <% end %>
-</ul>
+<div class="container-fluid">
+  <div class="row-fluid">
+		<div class="span7">
+				<h2><span class="nonBoldHeader">Join us on </span><%= @event.date ? @event.date.strftime('%B %d, %Y') : 'none' %></h2>
+				<div class="biobox">
+					<div class="description"><%= @event.description %></div>
+					<p><strong><%= link_to ("More about " + @event.organization.name + " &raquo;").html_safe, organization_path(@event.organization) %></strong></p>
+				</div>
+		</div>
+		<div class="span5">
+			<h2>Participants</h2>
+			<table class="table table-bordered table-background">
+			<tbody>
+					<% @event.participations.each do |participation| %>
+							<tr><td><%= link_to participation.volunteer.name, volunteer_participation_path(participation.volunteer, participation) %></tr></td>
+					<% end %>
+			</tbody>
+			</table>
+		</div>
+	</div>
+</div>
 
 <div class="form-actions">
   <% if @event.organization == current_user %>

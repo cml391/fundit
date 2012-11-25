@@ -12,6 +12,7 @@ class ParticipationsController < ApplicationController
     # TODO: update once we have offline donations
     @offline_perc = 0
     @online_perc = @participation.donation_percent
+    @donation = Donation.new
 
     respond_to do |format|
       format.html # show.html.erb
