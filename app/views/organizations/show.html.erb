@@ -27,12 +27,41 @@
       <div class="eventsbox">
         <h2>Upcoming Events</h2>
         <% @organization.events.each do |event| %>
-        <div class="event">
+          <div class="event" id=<%=event.id %>>
             <%= link_to event.name, organization_event_path(@organization, event) %>
-        </div>
+            <span class="moredetails">
+              <div class="expandbtn">+</div>
+              <div class="hiddeninfo"%>
+                <p class="eventdescription"><%= event.description %></p>
+                <% if event.organization == current_user %>
+                  <%= link_to 'Edit Event', edit_organization_event_path(event.organization, event), :class => 'btn' %>
+                <% elsif !(current_user.kind_of? Organization) %>
+                  <%= link_to 'Participate', new_volunteer_participation_path(current_user || 0, :event_id => event.id), :class => 'btn' %>
+                <% end %>
+              </div>
+            </span>
+          </div>
         <% end %>
       </div>
     </div>
 
   </div>
 </div>
+
+<% content_for :additional_scripts do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.hiddeninfo').hide();
+      
+      $('.moredetails').live('click', function(){
+        if($(this).children('.hiddeninfo').is(':hidden')){
+          $(this).children('.expandbtn').html('-');
+          $(this).children('.hiddeninfo').slideDown();
+        }else{
+          $(this).children('.expandbtn').html('+');
+          $(this).children('.hiddeninfo').slideUp();
+        }
+      });
+    });
+  </script>
+<% end %>
