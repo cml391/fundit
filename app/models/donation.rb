@@ -2,7 +2,7 @@ class Donation < ActiveRecord::Base
   attr_accessible :amount, :stripe_token
   belongs_to :participation
 
-  validates :amount, :presence => true, :numericality => {:only_integer => true}
+  validates :amount, :presence => true, :numericality => {:only_integer => true, :greater_than => 0}
   validates :participation_id, :presence => true
 
   # attr_accessor stripe token so that we can pretend that it's a field,
@@ -15,6 +15,8 @@ class Donation < ActiveRecord::Base
 
   # Charges the donor via Stripe
   def charge_donor
+    return true unless (self.amount and (self.amount > 0))
+
     begin
       Stripe::Charge.create({
         # amount is in dollars, stripe takes cents
