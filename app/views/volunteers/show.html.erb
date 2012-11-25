@@ -24,7 +24,7 @@
 
     <div class="span8">
       <div class="eventsbox">
-        <h2>Participated in</h2>
+        <h2>Participated in (<%= @volunteer.participations.length %>)</h2>
         <% @volunteer.participations.each do |participation| %>
           <div class="event" id=<%=participation.event.id %>>
             <%= link_to participation.event.name, volunteer_participation_path(participation.volunteer, participation) %>

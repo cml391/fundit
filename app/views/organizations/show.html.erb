@@ -25,7 +25,7 @@
 
     <div class="span8">
       <div class="eventsbox">
-        <h2>Upcoming Events</h2>
+        <h2>Upcoming Events (<%= @organization.events.length %>)</h2>
         <% @organization.events.each do |event| %>
           <div class="event" id=<%=event.id %>>
             <%= link_to event.name, organization_event_path(@organization, event) %>
