@@ -67,7 +67,9 @@
 }
 
 .table-background{
-		background-color: rgba(255, 255, 255, 0.6);
+		background: #EEE;
+		border: 1px solid #DDD;
+		font-size: 20px;
 }
 
 .nonBoldHeader{
@@ -76,4 +78,10 @@
 
 .description{
 		margin-bottom: 15px;
+}
+
+.eventsbox {
+		border: 1px solid #DDD;
+		background: rgba(255, 255, 255, 0.8);
+		padding: 0px 20px 0px 20px;
 }
