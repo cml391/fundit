@@ -11,42 +11,44 @@
  *= require_self
  *= require_tree .
  */
- 
+
+ @import url(https://fonts.googleapis.com/css?family=Ribeye+Marrow);
+
  .statistic strong{
  		font-size: 30px;
  		margin-left: 20px;
  }
- 
+
  .statistic small{
  		font-size: 16px;
  }
- 
+
  .statistic .row {
  		margin-bottom: 10px;
  		margin-top: 10px;
  }
- 
+
  #donationForm{
  		margin-top: 0px;
  }
- 
+
  #donationForm .control-group{
  		margin-left: -35px;
  }
- 
+
  #donationForm .form-actions{
  		margin-left: 0px;
  }
- 
+
  #donationForm .form-actions .btn{
  		margin-left: -35px;
  }
- 
+
  #donateHeader{
  		text-align: center;
  		margin-bottom:20px;
  }
- 
+
 .biobox {
 	border: 1px solid rgba(0, 136, 204, 0.5);
 	background: rgba(0, 136, 204, 0.2);
