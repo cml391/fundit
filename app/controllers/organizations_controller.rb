@@ -17,7 +17,9 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
-    @followalready = Organization.follow_already(current_user.id, @organization.id)
+    if current_user
+      @followalready = Organization.follow_already(current_user.id, @organization.id)
+    end
 
     respond_to do |format|
       format.html # show.html.erb

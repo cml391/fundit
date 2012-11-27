@@ -3,13 +3,15 @@
   <h1><%= @organization.name %></h1>
 
   <span class="toolbar">
-    <% if current_user == @organization %>
-      <%= link_to 'Edit Organization', edit_organization_path(@organization), :class => 'btn' %>
-    <% else %>
-      <% if @followalready %>
-        <%= link_to 'Unfollow', unfollow_organization_path, :method => :delete, :class => 'btn' %>
+    <% if current_user %>
+      <% if current_user == @organization %>
+        <%= link_to 'Edit Organization', edit_organization_path(@organization), :class => 'btn' %>
       <% else %>
-        <%= link_to 'Follow', follow_organization_path, :method => :post, :class => 'btn' %>
+        <% if @followalready %>
+          <%= link_to 'Unfollow', unfollow_organization_path, :method => :delete, :class => 'btn' %>
+        <% else %>
+          <%= link_to 'Follow', follow_organization_path, :method => :post, :class => 'btn' %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
