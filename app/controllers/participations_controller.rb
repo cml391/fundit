@@ -95,7 +95,7 @@ class ParticipationsController < ApplicationController
         format.html { redirect_to volunteer_participation_url(@participation.volunteer, @participation), notice: 'Donation was successful. Thank you for your contribution.' }
         format.json { render json: @donation, status: :created, location: @donation }
       else
-        format.html { render action: "donate_form" }
+        format.html { render action: "show" }
         format.json { render json: @donation.errors, status: :unprocessable_entity }
       end
     end

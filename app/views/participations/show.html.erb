@@ -53,7 +53,7 @@
 
 			<div class="alert alert-error alert-block" style="<%=(@donation.errors.any? ? '' : 'display: none')%>">
 				<% if @donation.errors.any? %>
-					<h4><%= pluralize(@donation.errors.count, "error") %> while checking out:</h4>
+					<h4><%= pluralize(@donation.errors.count, "error") %> while checking out</h4>
 					<ul>
 						<% @donation.errors.full_messages.each do |msg| %>
 							<li><%= msg %>
