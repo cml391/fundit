@@ -3,6 +3,7 @@ class Organization < ActiveRecord::Base
                   :stripe_token, :stripe_code, :stripe_pub_key, :avatar_url
 
   has_many :events
+  has_many :follows
   has_secure_password
 
   validate :email_must_be_unique
@@ -17,6 +18,16 @@ class Organization < ActiveRecord::Base
   before_validation :convert_stripe_code, :on => :create
 
   private
+
+  # Returns true if the current user already follows the organization
+  def self.follow_already(currentuserid, organizationid)
+    follow = Follow.where("volunteer_id=?", currentuserid).where("organization_id=?", organizationid).first
+    if follow
+      return true
+    else
+      return false
+    end
+  end
 
   # Validation to ensure emails are unique across both Merchants and Customers.
   def email_must_be_unique

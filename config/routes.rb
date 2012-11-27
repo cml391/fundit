@@ -1,7 +1,11 @@
 Fundit::Application.routes.draw do
-  resources :follows, :only => ['index', 'create', 'new']
+  # resources :follows, :only => ['index', 'create', 'new']
 
   resources :organizations do
+    member do
+      post 'follow'
+      delete 'unfollow'
+    end
     collection do
       get 'new_stripe'
     end

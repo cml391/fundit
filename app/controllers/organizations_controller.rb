@@ -17,6 +17,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    @followalready = Organization.follow_already(current_user.id, @organization.id)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @organization }
@@ -75,6 +77,42 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  # POST /organizations/1/follow
+  def follow
+    if Organization.follow_already(current_user.id, @organization.id)
+      format.html { redirect_to @organization, notice: 'You already follow the organization.' }
+    else
+      @follow = Follow.new(params[:follow])
+
+      @follow.volunteer_id = current_user.id
+      @follow.organization_id = params[:id]
+
+      respond_to do |format|
+        if @follow.save
+          format.html { redirect_to @organization, notice: 'Follow was successfully created.' }
+          format.json { render json: @organization, status: :created, location: @organization }
+        end
+      end
+    end
+  end
+
+  # DELETE /organizations/1/unfollow
+  def unfollow
+    @follow = Follow.where("volunteer_id=?", current_user.id).where("organization_id=?", params[:id]).first()
+    if @follow
+      @follow.destroy
+      respond_to do |format|
+        format.html { redirect_to @organization, notice: 'You have successfully unfollowed the organization.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @organization, notice: 'You were not following the organization.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
 
   def find_organization
@@ -86,4 +124,5 @@ class OrganizationsController < ApplicationController
       redirect_to root_url, :alert => "You don't own that organization."
     end
   end
+
 end

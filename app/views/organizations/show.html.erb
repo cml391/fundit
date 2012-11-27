@@ -2,14 +2,19 @@
   <%= profile_image_tag_for @organization %>
   <h1><%= @organization.name %></h1>
 
-  <div class="toolbar">
-    <!-- <%= link_to 'Back', organizations_path, :class => 'btn'  %> -->
+  <span class="toolbar">
     <% if current_user == @organization %>
       <%= link_to 'Edit Organization', edit_organization_path(@organization), :class => 'btn' %>
+    <% else %>
+      <% if @followalready %>
+        <%= link_to 'Unfollow', unfollow_organization_path, :method => :delete, :class => 'btn' %>
+      <% else %>
+        <%= link_to 'Follow', follow_organization_path, :method => :post, :class => 'btn' %>
+      <% end %>
     <% end %>
   </div>
 
-</div>
+</span>
 
 <dl class="container-fluid">
   <div class="row-fluid">
