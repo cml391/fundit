@@ -1,4 +1,6 @@
 Fundit::Application.routes.draw do
+  resources :follows, :only => ['index', 'create', 'new']
+
   resources :organizations do
     collection do
       get 'new_stripe'

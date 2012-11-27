@@ -2,6 +2,7 @@ class Volunteer < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation, :avatar_url
   has_many :participations
   has_many :events, :through => :participations
+  has_many :follows
   has_secure_password
 
   validate :email_must_be_unique
