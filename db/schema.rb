@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(:version => 20121128063911) do
   end
 
   create_table "follows", :force => true do |t|
-    t.integer  "volunteer_id",    :limit => 255
+    t.integer  "volunteer_id",    :limit => 255, :default => 0
     t.string   "organization_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "organizations", :force => true do |t|
