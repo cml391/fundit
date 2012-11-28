@@ -2,3 +2,9 @@
   <h1>New Event</h1>
 </div>
 <%= render :partial => 'form' %>
+
+<% content_for :additional_scripts do %>
+    <script type="text/javascript">
+            $('#create_event_nav').addClass("active");
+    </script>
+<% end %>

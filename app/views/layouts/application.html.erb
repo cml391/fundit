@@ -16,65 +16,68 @@
   </head>
   <body class="<%= controller.controller_name %> <%= controller.action_name %>">
 
-    <div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <div class="container">
-        	<div class="row">
-        		<div class="span3">
-							<a class="brand" href="/">Fund<strong class="accent-color">It</strong></a>
-          	</div>
-          	<div class="span9">
-          		<div class="row">
-							<% if current_user %>
-								<ul class="navbar-text pull-right unstyled">
-									<% if current_user.kind_of? Volunteer %>
-										<li>Welcome <strong class="link-dark"><%= link_to current_user.name, volunteer_path(current_user) %></strong>.
-									<% else %>
-										<li>Welcome <strong class="link-dark"><%= link_to current_user.name, organization_path(current_user) %></strong>.
-									<% end %>
-									<span> Not you? </span>
-									<strong class="link-color"><%= link_to 'Logout', logout_path, :method => 'delete' %></strong></li>
-								</ul>
-							<% else %>
-									<ul class="navbar-text pull-right unstyled">
-										<li><%= link_to 'Login', login_path %></li>
-									</ul>
-							<% end %>
-							</div>
-							<div class="row">
-							<ul class="nav pull-right">
-								<li><%= link_to "ORGANIZATIONS", organizations_path , :id=>"organizations_nav"%></li>
-								<li><%= link_to "UPCOMING EVENTS", events_path, :id=>"upcoming_events_nav" %></li>
-								<% if current_user.kind_of? Organization %>
-									<li><%= link_to "CREATE EVENT", new_organization_event_path(current_user), :id=>"create_event_nav"  %></li>
-								<% end %>
-							</ul>
-							</div>
-						</div>
-					</div>
+    <div class="wrapper">
+      <div class="navbar navbar-static-top">
+        <div class="navbar-inner">
+          <div class="container">
+          	<div class="row">
+          		<div class="span3">
+  							<a class="brand" href="/">Fund<strong class="accent-color">It</strong></a>
+            	</div>
+            	<div class="span9">
+            		<div class="row">
+  							<% if current_user %>
+  								<ul class="navbar-text pull-right unstyled">
+  									<% if current_user.kind_of? Volunteer %>
+  										<li>Welcome <strong class="link-dark"><%= link_to current_user.name, volunteer_path(current_user) %></strong>.
+  									<% else %>
+  										<li>Welcome <strong class="link-dark"><%= link_to current_user.name, organization_path(current_user) %></strong>.
+  									<% end %>
+  									<span> Not you? </span>
+  									<strong class="link-color"><%= link_to 'Logout', logout_path, :method => 'delete' %></strong></li>
+  								</ul>
+  							<% else %>
+  									<ul class="navbar-text pull-right unstyled">
+  										<li><%= link_to 'Login', login_path %></li>
+  									</ul>
+  							<% end %>
+  							</div>
+  							<div class="row">
+  							<ul class="nav pull-right nav-links">
+  								<li><%= link_to "ORGANIZATIONS", organizations_path , :id=>"organizations_nav"%></li>
+  								<li><%= link_to "UPCOMING EVENTS", events_path, :id=>"upcoming_events_nav" %></li>
+  								<% if current_user.kind_of? Organization %>
+  									<li><%= link_to "CREATE EVENT", new_organization_event_path(current_user), :id=>"create_event_nav"  %></li>
+  								<% end %>
+  							</ul>
+  							</div>
+  						</div>
+  					</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="container content-container">
-      <div class="content">
-        <% if flash[:alert] %>
-          <div class="alert alert-error">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <%= flash[:alert] %>
-          </div>
-        <% end %>
+      <div class="container content-container">
+        <div class="content">
+          <% if flash[:alert] %>
+            <div class="alert alert-error">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
 
-        <% if flash[:notice] %>
-          <div class="alert">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <%= flash[:notice] %>
-          </div>
-        <% end %>
+          <% if flash[:notice] %>
+            <div class="alert">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
 
-        <%= yield %>
+          <%= yield %>
+        </div>
+
       </div>
-
+      <div class="push"></div>
     </div>
 
     <div class="bottom">
