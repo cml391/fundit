@@ -19,31 +19,40 @@
     <div class="navbar navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">FundIt</a>
-
-          <ul class="nav">
-            <li><%= link_to "Organizations", organizations_path %></li>
-            <% if current_user.kind_of? Organization %>
-              <li><%= link_to "Create Event", new_organization_event_path(current_user)  %></li>
-            <% end %>
-          </ul>
-
-          <% if current_user %>
-            <p class="navbar-text pull-right">
-              <% if current_user.kind_of? Volunteer %>
-                Logged in as <%= link_to current_user.name, volunteer_path(current_user) %>.
-              <% else %>
-                Logged in as <%= link_to current_user.name, organization_path(current_user) %>.
-              <% end %>
-              <%= link_to 'Log Out.', logout_path, :method => 'delete' %>
-            </p>
-          <% else %>
-              <p class="navbar-text pull-right">
-                <%= link_to 'Log In / Register', login_path %>
-              </p>
-          <% end %>
-
-          </div>
+        	<div class="row">
+        		<div class="span3">
+							<a class="brand" href="/">Fund<strong class="accent-color">It</strong></a>
+          	</div>
+          	<div class="span9">
+          		<div class="row">
+							<% if current_user %>
+								<ul class="navbar-text pull-right unstyled">
+									<% if current_user.kind_of? Volunteer %>
+										<li>Welcome <strong class="link-dark"><%= link_to current_user.name, volunteer_path(current_user) %></strong>.
+									<% else %>
+										<li>Welcome <strong class="link-dark"><%= link_to current_user.name, organization_path(current_user) %></strong>.
+									<% end %>
+									<span> Not you? </span>
+									<strong class="link-color"><%= link_to 'Logout', logout_path, :method => 'delete' %></strong></li>
+								</ul>
+							<% else %>
+									<ul class="navbar-text pull-right unstyled">
+										<li><%= link_to 'Login', login_path %></li>
+									</ul>
+							<% end %>
+							</div>
+							<div class="row">
+							<ul class="nav pull-right">
+								<li><%= link_to "ORGANIZATIONS", organizations_path , :id=>"organizations_nav"%></li>
+								<li><%= link_to "UPCOMING EVENTS", events_path, :id=>"upcoming_events_nav" %></li>
+								<% if current_user.kind_of? Organization %>
+									<li><%= link_to "CREATE EVENT", new_organization_event_path(current_user), :id=>"create_event_nav"  %></li>
+								<% end %>
+							</ul>
+							</div>
+						</div>
+					</div>
+        </div>
       </div>
     </div>
 
@@ -68,7 +77,7 @@
 
     </div>
 
-    <div class="container footer">
+    <div class="bottom">
       Created for <a href="https://stellar.mit.edu/S/course/6/fa12/6.170/">6.170</a>
       by Ben Weissmann, Joanna Kao, and Cristina Lozano. Source on
       <a href="https://github.com/6170/qwerty">GitHub</a>.

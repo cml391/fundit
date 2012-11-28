@@ -1,3 +1,4 @@
+
 @import "twitter/bootstrap/bootstrap";
 
 
@@ -26,46 +27,78 @@
 //
 // Example:
 // @linkColor: #ff0000;
-@siteBackgroundColor: #aad1e4;
 @navbarBackgroundHighlight: rgba(255, 255, 255, 0.7);
 @navbarBackground: @navbarBackgroundHighlight;
-@navbarHeight: 60px;
-
-
-
-body {
-    background-image: url("/assets/bg.png");
-    background-color: @siteBackgroundColor;
-    background-repeat: repeat-x;
-}
-
-.content-container {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 0 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1), 0 1px 10px rgba(0, 0, 0, .1);
-}
+@navbarHeight: 90px;
+@linkColor: #207499;
+@sansFontFamily: 'Open Sans';
+@heroUnitBackground: #F4F4F4;
+@orange: #d64f2a;
+@navbarLinkColorActive: #d64f2a;
 
 .content {
     padding-bottom: 40px;
+    padding-top: 60px;
+}
+
+a {
+	font-weight:600;
 }
 
 .navbar .brand {
     font-size: 40px;
-    font-family: 'Ribeye Marrow', cursive;
-}
+    font-family: 'Arvo', serif;
+    font-weight: 400;
+    padding: 40px 20px 30px 20px;
+}	
 
 .form-actions {
     background-color: rgba(255, 255, 255, 0.6);
 }
 
-.container.footer {
-    text-align: center;
-    padding-bottom: 20px;
 
-    a {
-        color: @linkColorHover;
-    }
+.hero-unit{
+		border: 1px solid #DDDDDD;
+		padding: 10px 30px 10px 30px;
+}
+
+.control-label {
+		text-transform: uppercase;
+		font-weight:600;
+}
+
+.btn-warning {
+		font-weight: 700;
+		font-size: 20px;
+		padding: 10px 40px 10px 40px;
+}
+
+.navbar-inner .nav{
+		height:50px;
+}
+
+.navbar-inner .nav li a{
+		padding-top:5px;
+		padding-bottom:5px;
+		margin: 10px 15px 10px 15px;
+}
+
+.navbar-inner .nav li a:hover{
+		color: @orange;
+}
+
+.navbar-inner .navbar-text{
+		height:40px;
+}
+
+.navbar-inner .navbar-text li{
+		height:40px;
+}
+
+.navbar-inner .navbar-text li a{
+		padding-top:20px;
+}
+
+.navbar .active{
+		color: #d64f2a;
 }

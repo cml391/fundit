@@ -1,9 +1,20 @@
 class EventsController < ApplicationController
-  before_filter :require_organization, :except => [:show]
-  before_filter :find_event, :except => [:new, :create]
+  before_filter :require_organization, :except => [:show, :index]
+  before_filter :find_event, :except => [:new, :create, :index]
   before_filter :require_ownership, :only => [:edit, :update]
 
+	# GET /events
+  # GET /events.json
+  def index
+    @events = Event.all
 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @events }
+    end
+  end
+
+	
   # GET /organizations/1/events/1
   # GET /organizations/1/events/1.json
   def show

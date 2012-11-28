@@ -1,18 +1,18 @@
 <div class="page-header">
-  <h1>Organizations</h1>
+  <h1>Upcoming Events</h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Date</th>
       <th>Name</th>
-      <th>Email</th>
     </tr>
   </thead>
   <tbody>
-    <% @organizations.each do |organization| %>
+    <% @events.each do |event| %>
       <tr>
-        <td><%= link_to organization.name, organization_path(organization) %></td>
-        <td><%= organization.email %></td>
+        <td><%= event.date %></td>
+        <td><%= link_to event.name, event_path(event) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -20,6 +20,6 @@
 
 <% content_for :additional_scripts do %>
     <script type="text/javascript">
-			$('#organizations_nav').addClass("active");
+			$('#upcoming_events_nav').addClass("active");
     </script>
 <% end %>

@@ -11,9 +11,21 @@
  *= require_self
  *= require_tree .
  */
+ 
+ 
+ /********************* Colour reference chart****************
+*************************** comment ********* colour ******** 
 
- @import url(https://fonts.googleapis.com/css?family=Ribeye+Marrow);
+blue							#207499    
+orange						#d64f2a
+light gray				#F4F4F4
+dark gray					#DDDDDD
 
+*/
+
+ @import url(https://fonts.googleapis.com/css?family=Arvo);
+ @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+ 
  .statistic strong{
  		font-size: 30px;
  		margin-left: 20px;
@@ -50,8 +62,8 @@
  }
 
 .biobox {
-	border: 1px solid rgba(0, 136, 204, 0.5);
-	background: rgba(0, 136, 204, 0.2);
+	border: 1px solid rgba(158, 190, 166, 0.6);
+	background: rgba(158, 190, 166, 0.3);
 	padding: 10px;
 }
 
@@ -86,4 +98,63 @@
 		border: 1px solid #DDD;
 		background: rgba(255, 255, 255, 0.8);
 		padding: 0px 20px 0px 20px;
+}
+
+
+
+
+
+
+.link-dark{
+	color: black;
+}
+
+.link-color{
+	color: #207499;
+}
+
+.accent-color{
+		color: #d64f2a;
+}
+
+.brand strong{
+		letter-spacing: 0.05em;
+}
+
+.inset-form h3 {
+		font-weight: 400;
+		font-size: 16px;
+}
+
+.footer {
+		border-top: 1px solid #DDDDDD;
+		margin: 0px -30px 0px -30px;
+}
+
+.footer div {
+		font-size: 14px;
+		font-weight: 400;
+		margin: 10px 30px 0px 30px;
+}
+
+.light{
+		font-weight: 300;
+}
+
+.normal{
+		font-weight: 400;
+}
+
+.bottom {
+    text-align: center;
+    padding: 20px 0px;
+    background: #F4F4F4;
+    border-top: 1px solid #DDDDDD;
+}
+
+.navbar .active{
+		border: 1px solid #DDDDDD;
+		border-radius: 3px;
+		box-shadow: inset 0 0 4px #DDDDDD;
+		color: #d64f2a;
 }

@@ -1,4 +1,6 @@
 Fundit::Application.routes.draw do
+  get "home/index"
+
   # resources :follows, :only => ['index', 'create', 'new']
 
   resources :organizations do
@@ -12,6 +14,8 @@ Fundit::Application.routes.draw do
 
     resources :events
   end
+  
+  resources :events
 
   resources :volunteers do
     resources :participations do
@@ -26,7 +30,7 @@ Fundit::Application.routes.draw do
   match '/login' => 'sessions#create', :via => :post
   match '/logout' => 'sessions#destroy', :via => :delete, :as => 'logout'
 
-  root :to => 'organizations#index'
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

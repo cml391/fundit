@@ -1,0 +1,45 @@
+<% if @volunteer.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@volunteer.errors.count, "error") %> prohibited this volunteer from being saved:</h2>
+
+    <ul>
+    <% @volunteer.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for @volunteer do |f| %>
+  <div class="control-group">
+  	<div class="controls controls-row">
+      <%= f.label "First Name", :class => 'control-label span5' %>
+      <%= f.label "Last Name", :class => 'control-label span6' %>
+    </div>
+    <div class="controls controls-row">
+      <%= f.text_field :name, :class => 'text_field span5' %>
+      <%= f.text_field :name, :class => 'text_field span6' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field span12' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :class => 'text_field span8' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password_confirmation, 'Confirm Password', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, :class => 'text_field span8' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.submit "Sign Up", :class => 'btn btn-warning' %>
+  </div>
+<% end %>

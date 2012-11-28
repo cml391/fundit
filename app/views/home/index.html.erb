@@ -1,0 +1,26 @@
+<body>
+	<div class="container-fluid">
+  	<div class="row-fluid">
+			<div class="span7">
+				<div class="span11">
+				<h1 class="light"> A fundraising platform for all. </h1>
+					<div ><%= image_tag "handshake.png" , :id=>"handshake" %> </div>
+				<h2 class="normal" id="info"> Connect with our passionate community and raise money for your cause. Or track your progress towards your fundraising goal. </h2>
+				<h3 id="join-message"> Join the FundIt community and get started <%= image_tag "orange-arrow.png" , :id=>"arrow" %></h3>
+				</div>
+			</div>
+			<div class="span5">
+				<div class="hero-unit inset-form">
+					<h2> Sign Up </h2>
+					<h3> Volunteer sign-up is easy. And Free. </h3>
+					<%= render :partial => 'form' %>
+					<div class="footer">
+						<div>
+							<span>Interested in signing up as an Organization? <%= link_to 'Register Here', new_stripe_organizations_path %></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
