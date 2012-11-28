@@ -29,7 +29,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/new_stripe
   # prompts the user to connect to Stripe
-  def new
+  def new_stripe
   end
 
   # GET /organizations/new
