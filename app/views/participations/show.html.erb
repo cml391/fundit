@@ -26,7 +26,7 @@
 			</div>
 			<div class="row">
 				<div class="span10 offset1">
-					<div class="progress"> 
+					<div class="progress">
 						<div class="bar bar-success" id="onlineBar"></div>
 						<div class="bar bar-warning" id="offlineBar"></div>
 					</div>
@@ -47,7 +47,7 @@
 		</div>
 		<div class="span5 eventsbox" id="donationForm">
 			<h2 id="donateHeader"> Donate Now! </h2>
-		
+
 			<%= form_for @donation, :url => donate_volunteer_participation_path(@participation.volunteer, @participation),
                         :html => { :class => 'form-horizontal donate-form', :id => 'stripe-payment-form' } do |f| %>
 
@@ -61,7 +61,7 @@
 					</ul>
 				<% end %>
 			</div>
-		
+
 			<div class="control-group">
 				<label class="control-label">Donation Amount</label>
 				<div class="controls">
@@ -72,31 +72,31 @@
 					</div>
 				</div>
 			</div>
-		
+
 			<div class="control-group">
 				<label class="control-label">Card Number</label>
 				<div class="controls">
 					<input type="text" size="20" autocomplete="off" class="card-number" />
 				</div>
 			</div>
-		
+
 			<div class="control-group">
 				<label class="control-label">CVC</label>
 				<div class="controls">
 					<input type="text" size="4" autocomplete="off" class="card-cvc input-mini" />
 				</div>
 			</div>
-		
+
 			<div class="control-group">
 				<label class="control-label">Expiration</label>
 				<div class="controls">
 					<input type="text" size="2" autocomplete="off" class="card-expiry-month input-mini" placeholder="MM" maxlength="2"/>
 					/
 					<input type="text" size="4" autocomplete="off" class="card-expiry-year input-mini" placeholder="YYYY" maxlength="4"/>
-					
+
 				</div>
 			</div>
-			
+
 			<div class="control-group form-actions">
 				<%= f.submit 'Donate', :class => 'btn btn-primary submit-button' %>
 			</div>
@@ -112,4 +112,8 @@
 			$('#onlineBar').css('width', (online_perc)+'%');
 			//$('#offlineBar').css('width', (offline_perc)+'%');
     </script>
+    <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+	<script type="text/javascript">
+	  Stripe.setPublishableKey("<%= @participation.event.organization.stripe_pub_key %>");
+	</script>
 <% end %>
