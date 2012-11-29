@@ -6,7 +6,7 @@
 
   <div class="alert alert-error alert-block" style="<%=(@offline_donation.errors.any? ? '' : 'display: none')%>">
     <% if @offline_donation.errors.any? %>
-      <h4><%= pluralize(@offline_donation.errors.count, "error") %> while checking out:</h4>
+      <h4><%= pluralize(@offline_donation.errors.count, "error") %> with submission:</h4>
       <ul>
         <% @offline_donation.errors.full_messages.each do |msg| %>
           <li><%= msg %>
@@ -36,11 +36,11 @@
   <div class="control-group">
     <label class="control-label">Donation Type</label>
     <label class="radio">
-    	<%= radio_button_tag(:type, "check") %>
+    	<%= f.radio_button(:type, "check") %>
     	Check
     </label>
     <label class="radio">
-    	<%= radio_button_tag(:type, "cash") %>
+    	<%= f.radio_button(:type, "cash") %>
     	Cash
     </label>
   </div>

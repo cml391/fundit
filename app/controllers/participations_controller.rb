@@ -109,7 +109,7 @@ class ParticipationsController < ApplicationController
   # POST /volunteers/1/participations/1
   # POST /volunteers/1/participations/1.json
   def offline_donate
-    @offline_donation = OfflineDonation.new(params[:donation])
+    @offline_donation = OfflineDonation.new(params[:offline_donation])
     @offline_donation.participation = @participation
 
     respond_to do |format|
