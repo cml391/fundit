@@ -8,6 +8,7 @@ class ParticipationsController < ApplicationController
   # GET /volunteers/1/participations/1.json
   def show
     @participation = Participation.find(params[:id])
+    @volunteer = @participation.volunteer
 
     # TODO: update once we have offline donations
     @offline_perc = @participation.offline_donation_percent
@@ -97,6 +98,27 @@ class ParticipationsController < ApplicationController
       else
         format.html { render action: "show" }
         format.json { render json: @donation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def offline_donate_form
+  	@offline_donation = OfflineDonation.new
+  end
+  
+  # POST /volunteers/1/participations/1
+  # POST /volunteers/1/participations/1.json
+  def offline_donate
+    @offline_donation = OfflineDonation.new(params[:donation])
+    @offline_donation.participation = @participation
+
+    respond_to do |format|
+      if @offline_donation.save
+        format.html { redirect_to volunteer_participation_url(@participation.volunteer, @participation), notice: 'Offline donation was logged successfully' }
+        format.json { render json: @offline_donation, status: :created, location: @donation }
+      else
+        format.html { render action: "offline_donate_form" }
+        format.json { render json: @offline_donation.errors, status: :unprocessable_entity }
       end
     end
   end

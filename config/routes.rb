@@ -22,6 +22,9 @@ Fundit::Application.routes.draw do
       member do
         get 'donate', :as => 'donate', :action => 'show'
         post 'donate'
+        
+        get 'offline_donate', :as => 'offline_donate', :action => 'offline_donate_form'
+        post 'offline_donate'
       end
     end
   end

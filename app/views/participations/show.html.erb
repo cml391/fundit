@@ -52,6 +52,12 @@
 				</div>
 				</div>
 			</div>
+			<% if @volunteer == current_user %>
+				<div class="form-actions">
+    			<%= link_to 'Edit Participation', edit_volunteer_participation_path(@volunteer, @participation), :class => 'btn btn-margin' %>
+    			<%= link_to 'Log Offline Donation', offline_donate_volunteer_participation_path(@volunteer, @participation), :class => 'btn btn-margin' %>
+    		</div>
+  		<% end %>
 		</div>
 		<div class="span5 eventsbox" id="donationForm">
 			<h2 id="donateHeader"> Donate Now! </h2>

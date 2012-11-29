@@ -9,7 +9,7 @@
     </ul>
   </div>
 <% end %>
-<%= form_for [current_user, @participation], :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for [current_user, @participation] do |f| %>
 
   <% if params[:event_id] %>
     <%= hidden_field_tag 'event_id', params[:event_id] %>
