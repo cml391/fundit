@@ -10,7 +10,7 @@ class ParticipationsController < ApplicationController
     @participation = Participation.find(params[:id])
 
     # TODO: update once we have offline donations
-    @offline_perc = 0
+    @offline_perc = @participation.offline_donation_percent
     @online_perc = @participation.donation_percent
     @donation = Donation.new
 

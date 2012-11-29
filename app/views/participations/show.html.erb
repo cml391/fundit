@@ -7,11 +7,19 @@
   <div class="row-fluid">
 		<div class="span7">
 			<div class="row">
-				<div class="span1 statistic offset1">
-					<small> Raised </small>
+				<div class="span3 statistic offset1">
+					<small> Raised Online</small>
 					<div class="row">
-						<div class="span1">
-							<strong> $<%= @participation.donation_sum %> </strong>
+						<div class="span3">
+							<strong class="text-orange"> $<%= @participation.donation_sum %> </strong>
+						</div>
+					</div>
+				</div>
+				<div class="span3 statistic offset1">
+					<small> Raised Offline</small>
+					<div class="row">
+						<div class="span3">
+							<strong class="text-blue"> $<%= @participation.offline_donation_sum %> </strong>
 						</div>
 					</div>
 				</div>
@@ -108,9 +116,9 @@
 <% content_for :additional_scripts do %>
     <script type="text/javascript">
 			var online_perc = <%= @online_perc %>;
-			//var offline_perc = <%= @offline_perc %>;
+			var offline_perc = <%= @offline_perc %>;
 			$('#onlineBar').css('width', (online_perc)+'%');
-			//$('#offlineBar').css('width', (offline_perc)+'%');
+			$('#offlineBar').css('width', (offline_perc)+'%');
     </script>
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 	<script type="text/javascript">
