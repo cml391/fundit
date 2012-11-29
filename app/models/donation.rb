@@ -1,5 +1,5 @@
 class Donation < ActiveRecord::Base
-  attr_accessible :amount, :stripe_token
+  attr_accessible :amount, :stripe_token, :message, :name, :is_name_private, :is_amount_private, :is_message_private
   belongs_to :participation
 
   validates :amount, :presence => true, :numericality => {:only_integer => true, :greater_than => 0}
@@ -31,5 +31,26 @@ class Donation < ActiveRecord::Base
       errors.add(:billing, "Failed: #{e.message}")
       return false
     end
+  end
+  
+  # Returns whether or not all of the fields are private
+  def all_private
+  	return is_name_private &&  is_message_private && is_amount_private
+  end
+  
+  def share_history_message
+  	share_name = "Anonymous"
+  	if is_name_private == false
+  		share_name = name
+  	end
+  	share_message = share_name + " donated"
+  	if is_amount_private == false
+  		share_message += " $" + amount.to_s
+  	end
+  	
+  	if all_private
+  		share_message = ""
+  	end
+  	return share_message
   end
 end

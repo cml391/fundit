@@ -17,4 +17,13 @@ class Volunteer < ActiveRecord::Base
       errors.add(:email, "is already taken")
     end
   end
+  
+  # Concatenates the first and last name and returns it as one string
+  def full_name
+  	if last_name.nil?
+  		return name
+  	else
+  		return name + " " + last_name
+  	end
+  end
 end

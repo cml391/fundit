@@ -15,7 +15,7 @@
     <% end %>
   </div>
 
-  <div class="control-group">
+  <div class="control-group padding-bottom">
     <label class="control-label">Donation Amount</label>
     <div class="controls">
       <div class="input-prepend input-append">
@@ -33,17 +33,29 @@
     </div>
   </div>
 
-  <div class="control-group">
+  <div class="control-group padding-bottom">
     <label class="control-label">Donation Type</label>
     <label class="radio">
-    	<%= f.radio_button(:type, "check") %>
+    	<%= f.radio_button(:donation_type, "check") %>
     	Check
     </label>
     <label class="radio">
-    	<%= f.radio_button(:type, "cash") %>
+    	<%= f.radio_button(:donation_type, "cash") %>
     	Cash
     </label>
   </div>
+	
+	<div class="control-group padding-bottom">
+		<label class="control-label">Do Not Display</label>
+		<div class="controls">
+			<label class="checkbox">
+				<%= f.check_box :is_name_private %> Name
+			</label>
+			<label class="checkbox">
+				<%= f.check_box :is_amount_private %> Amount
+			</label>
+		</div>
+	</div>
 
   <div class="form-actions">
     <%= f.submit 'Submit', :class => 'btn btn-primary submit-button' %>

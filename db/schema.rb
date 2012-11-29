@@ -11,13 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129020939) do
+ActiveRecord::Schema.define(:version => 20121129184553) do
 
   create_table "donations", :force => true do |t|
     t.integer  "participation_id"
     t.integer  "amount"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "message"
+    t.string   "name"
+    t.boolean  "is_message_private"
+    t.boolean  "is_name_private"
+    t.boolean  "is_amount_private"
   end
 
   create_table "events", :force => true do |t|
@@ -39,10 +44,12 @@ ActiveRecord::Schema.define(:version => 20121129020939) do
   create_table "offline_donations", :force => true do |t|
     t.integer  "amount"
     t.string   "name"
-    t.string   "type"
+    t.string   "donation_type"
     t.integer  "participation_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.boolean  "is_name_private"
+    t.boolean  "is_amount_private"
   end
 
   create_table "organizations", :force => true do |t|

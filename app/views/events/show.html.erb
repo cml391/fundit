@@ -19,7 +19,7 @@
     			<table class="table table-bordered table-background">
         			<tbody>
         					<% @event.participations.each do |participation| %>
-        							<tr><td><%= link_to participation.volunteer.name, volunteer_participation_path(participation.volunteer, participation) %></tr></td>
+        							<tr><td><%= link_to participation.volunteer.full_name , volunteer_participation_path(participation.volunteer, participation) %></tr></td>
         					<% end %>
         			</tbody>
     			</table>
