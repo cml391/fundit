@@ -55,36 +55,41 @@
 			<div>
 
 				<h2> Donation History </h2>
-				<table class="table table-bordered">
-					<% (@participation.donations + @participation.offline_donations).each do |donation| %>
-						<% if donation.all_private != true %>
-        					<tr>
-        						<td>
-        							<%= donation.share_history_message %>
-        						</td>
-        						<% if @volunteer == current_user %>
-        						<td>
+                <% if @participation.donations.empty? %>
+                    <p>No donations yet.</p>
+                <% else %>
+    				<table class="table table-bordered">
+    					<% (@participation.donations + @participation.offline_donations).each do |donation| %>
+    						<% if donation.all_private != true %>
+            					<tr>
+            						<td>
+            							<%= donation.share_history_message %>
+            						</td>
+            						<% if @volunteer == current_user %>
+            						<td>
 
-        							<% if donation.email? and !donation.thank_you_sent? %>
-        								<%= link_to "Send a Thank-You",
-        								            thank_volunteer_participation_path(
-        								            	@volunteer,
-        								            	@participation,
-        								            	:donation_id => donation.id.to_s,
-                                                        :donation_type => (donation.kind_of?(OfflineDonation) ? 'offline' : 'online')) %>
-        							<% elsif donation.email? %>
-        								Thank-you sent.
-        							<% else %>
-        								No email given.
-        							<% end %>
+            							<% if donation.email? and !donation.thank_you_sent? %>
+            								<%= link_to "Send a Thank-You",
+            								            thank_volunteer_participation_path(
+            								            	@volunteer,
+            								            	@participation,
+            								            	:donation_id => donation.id.to_s,
+                                                            :donation_type => (donation.kind_of?(OfflineDonation) ? 'offline' : 'online')) %>
+            							<% elsif donation.email? %>
+            								Thank-you sent.
+            							<% else %>
+            								No email given.
+            							<% end %>
 
-        						</td>
-        						<% end %>
-        					</tr>
-        				<% end %>
-        			<% end %>
-				</table>
-			</div>
+            						</td>
+            						<% end %>
+            					</tr>
+            				<% end %>
+            			<% end %>
+    				</table>
+                 <% end %>
+    		</div>
+
 			<% if @volunteer == current_user %>
 				<div class="form-actions">
     			<%= link_to 'Edit Participation', edit_volunteer_participation_path(@volunteer, @participation), :class => 'btn btn-margin' %>
