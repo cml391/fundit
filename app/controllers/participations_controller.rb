@@ -131,7 +131,7 @@ class ParticipationsController < ApplicationController
   # POST /volunteers/1/participations/1/thank
   def thank
     Pony.mail :to => "#{@donation.name} <@donation.email>",
-              :from => "#{@donationvolunteer.name} <@volunteer.email>",
+              :from => "#{@volunteer.name} <@volunteer.email>",
               :subject => "Thank you for supporting me in #{@participation.event.name}",
               :body => params[:message]
     @donation.thank_you_sent = true
