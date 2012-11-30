@@ -1,5 +1,5 @@
 
-<h2 id="donateHeader" class="span12">Donate Now!</h1>
+<h2 id="donateHeader" class="span12">Donate Now!</h2>
 
 	<%= form_for @donation, :url => donate_volunteer_participation_path(@participation.volunteer, @participation),
 										:html => { :class => 'form-horizontal donate-form', :id => 'stripe-payment-form' } do |f| %>
@@ -7,7 +7,7 @@
 	<div class="alert alert-error alert-block" style="<%=(@donation.errors.any? ? '' : 'display: none')%>">
 		<% if @donation.errors.any? %>
 			<h4><%= pluralize(@donation.errors.count, "error") %> while checking out</h4>
-			<ul>
+			<ul>d
 				<% @donation.errors.full_messages.each do |msg| %>
 					<li><%= msg %>
 				<% end %>
@@ -25,11 +25,18 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="control-group">
 		<label class="control-label">Name</label>
 		<div class="controls">
 			<%= f.text_field :name %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label">Email</label>
+		<div class="controls">
+			<%= f.text_field :email %>
 		</div>
 	</div>
 
@@ -41,7 +48,16 @@
 	</div>
 
 	<div class="control-group">
-		<label class="control-label">CVC</label>
+		<label class="control-label">
+			CVC
+			<a href="#" rel="popover"
+			   data-content="Your CVC is usually located on the back of your card."
+			   data-original-title="Where is my CVC?"
+			   data-trigger="hover"
+			   onclick="javascript:return false;">
+			   	<i class="icon-question-sign"></i>
+			</a>
+		</label>
 		<div class="controls">
 			<input type="text" size="4" autocomplete="off" class="card-cvc input-mini" />
 		</div>
@@ -56,16 +72,16 @@
 
 		</div>
 	</div>
-	
+
 	<div class="control-group">
 		<label class="control-label">Message</label>
 		<div class="controls">
 			<%= f.text_area :message, :rows=>5 %>
 		</div>
 	</div>
-	
+
 	<div class="control-group">
-		<label class="control-label">Do Not Display</label>
+		<label class="control-label">Keep Private</label>
 		<div class="controls">
 			<label class="checkbox">
 				<%= f.check_box :is_name_private %> Name
@@ -76,7 +92,13 @@
 			<label class="checkbox">
 				<%= f.check_box :is_message_private %> Message
 			</label>
+			<span class="help-block">
+				Email is always private. Name, amount, and message are always shown
+				to the volunteer you're contributing to, but you can choose to not
+				show them publicly.
+			</span>
 		</div>
+
 	</div>
 
 	<div class="control-group form-actions">
@@ -84,7 +106,7 @@
 	</div>
 <% end %>
 
-		
+
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 <script type="text/javascript">
   Stripe.setPublishableKey("<%= @participation.event.organization.stripe_pub_key %>");

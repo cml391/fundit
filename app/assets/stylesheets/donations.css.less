@@ -2,8 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Less here: http://lesscss.org/
 
-.donate-form {
+body.participations form {
     .amount-input {
         text-align: right;
+    }
+
+    .help-block, .help-inline {
+        font-size: 12px;
+        font-color: gray;
+        font-style: italic;
+    }
+
+    a[rel=popover] {
+        color: black;
+        margin-left: 5px;
+
+        &:hover {
+            text-decoration: none;
+        }
     }
 }

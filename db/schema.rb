@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129184553) do
+ActiveRecord::Schema.define(:version => 20121130060855) do
 
   create_table "donations", :force => true do |t|
     t.integer  "participation_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20121129184553) do
     t.boolean  "is_message_private"
     t.boolean  "is_name_private"
     t.boolean  "is_amount_private"
+    t.string   "email"
   end
 
   create_table "events", :force => true do |t|
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20121129184553) do
     t.datetime "updated_at",        :null => false
     t.boolean  "is_name_private"
     t.boolean  "is_amount_private"
+    t.string   "email"
   end
 
   create_table "organizations", :force => true do |t|
