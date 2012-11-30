@@ -9,6 +9,7 @@ gem "twitter-bootstrap-rails"
 gem 'stripe'
 gem 'rest-client'
 gem 'oauth2'
+gem 'pony'
 
 # Gems used only for assets and not required
 # in production environments by default.

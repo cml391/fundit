@@ -14,7 +14,7 @@ Fundit::Application.routes.draw do
 
     resources :events
   end
-  
+
   resources :events
 
   resources :volunteers do
@@ -22,7 +22,9 @@ Fundit::Application.routes.draw do
       member do
         get 'donate', :as => 'donate', :action => 'show'
         post 'donate'
-        
+        get 'thank', :as => 'thank', :action => 'thank_form'
+        post 'thank'
+
         get 'offline_donate', :as => 'offline_donate', :action => 'offline_donate_form'
         post 'offline_donate'
       end

@@ -31,6 +31,37 @@
       <%= f.text_area :description, :class => 'text_area' %>
     </div>
   </div>
+  <div class="control-group">
+    <label>Canned Messages</label>
+    <div class="controls">
+      Help your volunteers out by providing them messages to send to their
+      donors. You can use <code>{{date}}</code> to insert the date
+      of your event, <code>{{name}}</code> to insert the name of your event,
+      <code>{{org}}</code> to insert the name of your organization,
+      <code>{{link}}</code> to insert a link to the participation page,
+      and <code>{{volunteer}}</code> in insert the name of the volunteer
+      sending the message. For a thank-you message, you can also use
+      <code>{{donor}}</code> to insert the donor's name.
+
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#msg-solicit" data-toggle="tab">Solicitation</a></li>
+        <li><a href="#msg-thank-you" data-toggle="tab">Thank-You</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="msg-solicit">
+          Volunteers will be prompted to send this message to their friends to
+          solicit donations.
+
+          <%= f.text_area :solicit_email, :class => 'text_area' %>
+        </div>
+        <div class="tab-pane fade" id="msg-thank-you">
+          Volunteers will be prompted to send this email to donors who
+          contribute money to them.
+          <%= f.text_area :thank_you_email, :class => 'text_area' %>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

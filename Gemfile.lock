@@ -78,6 +78,8 @@ GEM
       rack (~> 1.2)
     pg (0.14.1)
     polyglot (0.3.3)
+    pony (1.4)
+      mail (> 2.0)
     pry (0.9.10)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -157,6 +159,7 @@ DEPENDENCIES
   jquery-rails
   oauth2
   pg
+  pony
   pry
   rack-ssl
   rails (= 3.2.7)

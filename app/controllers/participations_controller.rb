@@ -3,6 +3,7 @@ class ParticipationsController < ApplicationController
   before_filter :require_volunteer, :except => [:show, :donate_form, :donate]
   before_filter :find_participation, :except => [:new, :create]
   before_filter :require_ownership, :only => [:edit, :update]
+  before_filter :find_donation, :only => [:thank, :thank_form]
 
   # GET /volunteers/1/participations/1
   # GET /volunteers/1/participations/1.json
@@ -101,11 +102,11 @@ class ParticipationsController < ApplicationController
       end
     end
   end
-  
+
   def offline_donate_form
   	@offline_donation = OfflineDonation.new
   end
-  
+
   # POST /volunteers/1/participations/1
   # POST /volunteers/1/participations/1.json
   def offline_donate
@@ -123,10 +124,35 @@ class ParticipationsController < ApplicationController
     end
   end
 
+  # GET /volunteers/1/participations/1/thank?donation_id=1
+  def thank_form
+  end
+
+  # POST /volunteers/1/participations/1/thank
+  def thank
+    Pony.mail :to => @donation.email,
+              :from => @volunteer.email,
+              :subject => "Thank you for supporting me in #{@participation.event.name}",
+              :body => params[:message]
+    @donation.thank_you_sent = true
+    @donation.save!
+    redirect_to volunteer_participation_url(@participation.volunteer, @participation)
+  end
+
   private
 
   def find_participation
     @participation = Participation.find(params[:id])
+    @volunteer = @participation.volunteer
+    @event = @participation.event
+  end
+
+  def find_donation
+    if params[:donation_type] == 'offline'
+      @donation = OfflineDonation.find_by_id(params[:donation_id])
+    else
+      @donation = Donation.find_by_id(params[:donation_id])
+    end
   end
 
   def require_ownership

@@ -1,0 +1,43 @@
+<div class="page-header">
+  <h1>Thank A Thank-You</h1>
+</div>
+
+<%= form_tag do %>
+  <%= hidden_field_tag :donation_id, params[:donation_id] %>
+
+  <%= hidden_field_tag :donation_type, params[:donation_type] %>
+
+  <div class="control-group">
+    <label class="control-label">To</label>
+    <div class="controls">
+      <%= @donation.email %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">From</label>
+    <div class="controls">
+      <%= @volunteer.email %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Subject</label>
+    <div class="controls">
+      <%= text_field_tag :subject, "Thank you for supporting me in #{@event.name}", :class => 'span6'%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Message</label>
+    <div class="controls">
+      <%= text_area_tag :message, interpolate_email(@event.thank_you_email, @participation, @donation.name), :class => 'text_area' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag 'Submit', :class => 'btn btn-primary submit-button' %>
+    <%= link_to 'Cancel', volunteer_participation_url(@participation.volunteer, @participation), :class => 'btn' %>
+  </div>
+<% end %>
+
