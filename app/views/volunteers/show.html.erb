@@ -29,14 +29,14 @@
 
     <div class="span8">
       <div class="eventsbox">
-        <h2>Participated in (<%= @volunteer.participations.length %>)</h2>
+        <h3>Participated in (<%= @volunteer.participations.length %>)</h3>
         <% @volunteer.participations.each do |participation| %>
           <div class="event" id=<%=participation.event.id %>>
             <%= link_to participation.event.name, volunteer_participation_path(participation.volunteer, participation) %>
             <span class="moredetails">
               <div class="expandbtn">+</div>
               <div class="hiddeninfo"%>
-                <p class="eventdescription"><%= participation.event.description %></p>
+                <p class="eventdescription"><%= participation.event.date %><br /><%= participation.event.description %></p>
                 <% if participation.event.organization == current_user %>
                   <%= link_to 'Edit Event', edit_organization_event_path(participation.event.organization, participation.event), :class => 'btn' %>
                 <% elsif !(current_user.kind_of? Organization) %>
