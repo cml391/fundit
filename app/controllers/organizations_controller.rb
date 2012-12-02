@@ -21,6 +21,9 @@ class OrganizationsController < ApplicationController
       @followalready = Organization.follow_already(current_user.id, @organization.id)
     end
 
+    @futureevents = @organization.events.where(['date >= ?', DateTime.now]) 
+    @pastevents = @organization.events.where(['date < ?', DateTime.now])
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @organization }
