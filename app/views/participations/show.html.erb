@@ -55,17 +55,17 @@
 			<div>
 
 				<h2> Donation History </h2>
-                <% if @participation.donations.empty? %>
+                <% if @participation.donations.empty? && @participation.offline_donations.empty?%>
                     <p>No donations yet.</p>
                 <% else %>
     				<table class="table table-bordered">
     					<% (@participation.donations + @participation.offline_donations).each do |donation| %>
     						<% if donation.all_private != true %>
             					<tr>
-            						<td>
-            							<%= donation.share_history_message %>
-            						</td>
             						<% if @volunteer == current_user %>
+            						<td>
+            							<%= donation.private_history_message %>
+            						</td>
             						<td>
 
             							<% if donation.email? and !donation.thank_you_sent? %>
@@ -81,6 +81,10 @@
             								No email given.
             							<% end %>
 
+            						</td>
+            						<% else %>
+            						<td>
+            							<%= donation.share_history_message %>
             						</td>
             						<% end %>
             					</tr>
