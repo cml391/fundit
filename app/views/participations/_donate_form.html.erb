@@ -81,7 +81,18 @@
 	</div>
 
 	<div class="control-group">
-		<label class="control-label">Keep Private</label>
+		<label class="control-label">
+			Keep Private
+			<a href="#" rel="popover"
+			   data-content="Email is always private. Name, amount, and message are always shown
+				to the volunteer you're contributing to, but you can choose to not
+				show them publicly."
+			   data-original-title="What does this mean?"
+			   data-trigger="hover"
+			   onclick="javascript:return false;">
+			   	<i class="icon-question-sign"></i>
+			</a>
+		</label>
 		<div class="controls">
 			<label class="checkbox">
 				<%= f.check_box :is_name_private %> Name
@@ -92,11 +103,6 @@
 			<label class="checkbox">
 				<%= f.check_box :is_message_private %> Message
 			</label>
-			<span class="help-block">
-				Email is always private. Name, amount, and message are always shown
-				to the volunteer you're contributing to, but you can choose to not
-				show them publicly.
-			</span>
 		</div>
 
 	</div>

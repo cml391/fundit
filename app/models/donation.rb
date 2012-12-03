@@ -31,6 +31,11 @@ class Donation < ActiveRecord::Base
   	end
   	return share_message
   end
+  
+  def private_history_message
+  	private_message = name + " donated $" + amount.to_s
+  	return private_message
+  end
 
   private
 

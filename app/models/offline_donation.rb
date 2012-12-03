@@ -11,6 +11,11 @@ class OfflineDonation < ActiveRecord::Base
   	return is_name_private && is_amount_private
   end
 
+	def private_history_message
+  	private_message = name + " donated $" + amount.to_s + " by " + donation_type
+  	return private_message
+  end
+
   def share_history_message
   	share_name = "Anonymous"
   	if is_name_private == false
