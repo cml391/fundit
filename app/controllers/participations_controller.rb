@@ -2,7 +2,9 @@ class ParticipationsController < ApplicationController
   before_filter :require_user, :except => [:show, :donate_form, :donate]
   before_filter :require_volunteer, :except => [:show, :donate_form, :donate]
   before_filter :find_participation, :except => [:new, :create]
-  before_filter :require_ownership, :only => [:edit, :update]
+  before_filter :require_ownership, :only => [:edit, :update, :thank_form,
+                                              :thank, :offline_donate,
+                                              :offline_donate_form]
   before_filter :find_donation, :only => [:thank, :thank_form]
 
   # GET /volunteers/1/participations/1
