@@ -9,9 +9,7 @@ class Event < ActiveRecord::Base
   after_initialize :init_msgs
 
   def init_msgs
-    puts "FOO"
     return unless new_record?
-    puts "BAR"
 
     self.solicit_email = <<-END_EMAIL.strip_heredoc
       Dear Friends,
