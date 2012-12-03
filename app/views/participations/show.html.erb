@@ -37,6 +37,7 @@
 					<div class="progress">
 						<div class="bar bar-warning" id="onlineBar"></div>
 						<div class="bar bar-info" id="offlineBar"></div>
+
 					</div>
 				</div>
 			</div>
@@ -99,6 +100,40 @@
     			<%= link_to 'Edit Participation', edit_volunteer_participation_path(@volunteer, @participation), :class => 'btn btn-margin' %>
     			<%= link_to 'Log Offline Donation', offline_donate_volunteer_participation_path(@volunteer, @participation), :class => 'btn btn-margin' %>
     		</div>
+    		<div class="sharebox">
+    			<a href="https://twitter.com/share" class="twitter-share-button" data-text="Please donate to my charity">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+				</script>
+
+				<div id='fb-root'></div>
+				<script src='http://connect.facebook.net/en_US/all.js'></script>
+				<a onclick='postToFeed(); return false;'>Share on Facebook</a>
+				<p id='msg'></p>
+				<script> 
+			      FB.init({appId: "495928953775088", status: true, cookie: true});
+
+			      function postToFeed() {
+
+			        // calling the API ...
+			        var obj = {
+			          method: 'feed',
+			          redirect_uri: window.location.href,
+			          link: 'https://developers.facebook.com/docs/reference/dialogs/',
+			          picture: 'http://fbrell.com/f8.jpg',
+			          name: 'Facebook Dialogs',
+			          caption: 'Reference Documentation',
+			          description: 'Using Dialogs to interact with users.'
+			        };
+
+			        function callback(response) {
+			          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+			        }
+
+			        FB.ui(obj, callback);
+			      }
+			    
+			    </script>
+			</div>
   		<% end %>
 		</div>
 		<div class="span5 eventsbox" id="donationForm">
