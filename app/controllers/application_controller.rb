@@ -15,7 +15,11 @@ class ApplicationController < ActionController::Base
   # call this after logging in a user in to redirect them to the page that
   # required login.
   def redirect_after_login
-    redir_target = session[:return_to] || root_url
+  	if current_user.kind_of? Volunteer
+    	redir_target = session[:return_to] || volunteer_path(current_user)
+    else
+    	redir_target = session[:return_to] || organization_path(current_user)
+    end
     session[:return_to] = nil
     redirect_to redir_target, :notice => "Welcome, #{current_user.name}"
   end

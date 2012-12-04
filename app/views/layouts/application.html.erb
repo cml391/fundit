@@ -45,7 +45,8 @@
   							<div class="row">
   							<ul class="nav pull-right nav-links">
   								<li><%= link_to "ORGANIZATIONS", organizations_path , :id=>"organizations_nav"%></li>
-  								<li><%= link_to "UPCOMING EVENTS", events_path, :id=>"upcoming_events_nav" %></li>
+  								<li><%= link_to "EVENTS", events_path, :id=>"events_nav" %></li>
+  								<li><%= link_to "VOLUNTEERS", volunteers_path, :id=>"volunteers_nav" %></li>
   								<% if current_user.kind_of? Organization %>
   									<li><%= link_to "CREATE EVENT", new_organization_event_path(current_user), :id=>"create_event_nav"  %></li>
   								<% end %>

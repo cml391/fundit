@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="search-side-bar span4">
+		<h1> Volunteers </h1>
+		<p class="info">Find your friends and help them support their cause.</p>
+		<input type="text" class="search-query span4" placeholder="Search">
+	</div>
+	<div class="search-table-center span7">
+		<div class="hero-unit">
+			<div class="hero-unit-header"><h2>Volunteers (<%= @volunteers.size %>)</h2></div>
+				<% @volunteers.each do |volunteer| %>
+					<div class="search-table-entry">
+						<%= icon_image_tag_for volunteer %>
+						<span><%= link_to volunteer.full_name, volunteer_path(volunteer) %><span>
+					</div>
+				<% end %>
+		</div>
+	
+	</div>
+</div>
+
+<% content_for :additional_scripts do %>
+    <script type="text/javascript">
+			$('#volunteers_nav').addClass("active");
+    </script>
+<% end %>

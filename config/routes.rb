@@ -16,6 +16,8 @@ Fundit::Application.routes.draw do
   end
 
   resources :events
+  
+  resources :volunteers
 
   resources :volunteers do
     resources :participations do

@@ -3,6 +3,17 @@ class VolunteersController < ApplicationController
   before_filter :find_volunteer, :except => [:index, :new, :create]
   before_filter :require_ownership, :only => [:edit, :update]
 
+	# GET /volunteers
+  # GET /volunteers.json
+  def index
+    @volunteers = Volunteer.order(:name).all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @name }
+    end
+  end
+
 
   # GET /volunteers/1
   # GET /volunteers/1.json

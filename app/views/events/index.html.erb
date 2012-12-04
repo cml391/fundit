@@ -6,7 +6,7 @@
 	</div>
 	<div class="search-table-center span7">
 		<div class="hero-unit">
-			<div class="hero-unit-header"><h2>Upcoming Events</h2></div>
+			<div class="hero-unit-header"><h2>Upcoming Events (<%= @events.size %>)</h2></div>
 				<% @events.each do |event| %>
 					<div class="search-table-entry">
 						<%= icon_event_image_tag_for event %>
@@ -23,6 +23,6 @@
 
 <% content_for :additional_scripts do %>
     <script type="text/javascript">
-			$('#upcoming_events_nav').addClass("active");
+			$('#events_nav').addClass("active");
     </script>
 <% end %>
