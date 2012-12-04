@@ -48,4 +48,8 @@ class Organization < ActiveRecord::Base
 
     return true
   end
+  
+  def number_followers
+  	return follows.size
+  end
 end

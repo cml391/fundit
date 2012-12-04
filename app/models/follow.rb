@@ -1,5 +1,5 @@
 class Follow < ActiveRecord::Base
   attr_accessible :organization_id, :volunteer_id
   belongs_to :volunteer
-  belongs_to :organization
+  belongs_to :organization, :counter_cache => true 
 end

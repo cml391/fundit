@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130171134) do
+ActiveRecord::Schema.define(:version => 20121204073447) do
 
   create_table "donations", :force => true do |t|
     t.integer  "participation_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20121130171134) do
     t.date     "date"
     t.text     "thank_you_email"
     t.text     "solicit_email"
+    t.string   "image_url"
   end
 
   create_table "follows", :force => true do |t|
@@ -64,10 +65,11 @@ ActiveRecord::Schema.define(:version => 20121130171134) do
     t.string   "password_digest"
     t.string   "stripe_token"
     t.text     "bio"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "stripe_pub_key"
     t.string   "avatar_url"
+    t.integer  "follows_count",   :default => 0
   end
 
   create_table "participations", :force => true do |t|

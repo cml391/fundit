@@ -1,22 +1,25 @@
-<div class="page-header">
-  <h1>Upcoming Events</h1>
+<div class="row">
+	<div class="search-side-bar span4">
+		<h1> Upcoming Events </h1>
+		<p class="info">New events are added daily by our various organizations.</p>
+		<input type="text" class="search-query span4" placeholder="Search">
+	</div>
+	<div class="search-table-center span7">
+		<div class="hero-unit">
+			<div class="hero-unit-header"><h2>Upcoming Events</h2></div>
+				<% @events.each do |event| %>
+					<div class="search-table-entry highlight">
+						<%= icon_event_image_tag_for event %>
+						<div class="entry-text">
+							<div class="info">On <strong><%= event.date ? event.date.strftime('%B %d') : 'none' %></strong> hosted by <strong><%= event.organization.name %></strong></div>
+							<div class="title"><%= link_to event.name, event_path(event) %></div>
+						</div>
+					</div>
+				<% end %>
+		</div>
+	
+	</div>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.date %></td>
-        <td><%= link_to event.name, event_path(event) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <% content_for :additional_scripts do %>
     <script type="text/javascript">

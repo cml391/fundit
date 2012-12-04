@@ -1,22 +1,31 @@
-<div class="page-header">
-  <h1>Organizations</h1>
+<div class="row">
+	<div class="search-side-bar span4">
+		<h1> Organizations </h1>
+		<p class="info"> Fundit partners with organizations all over the country. Find the organization that fits your cause.</p>
+		<input type="text" class="search-query span4" placeholder="Search">
+	</div>
+	<div class="search-table-center span7">
+		<div class="hero-unit">
+			<div class="hero-unit-header"><h2>Popular Organizations</h2></div>
+				<% Organization.order("follows_count").limit(3).each do |organization| %>
+					<div class="search-table-entry highlight">
+						<%= icon_image_tag_for organization %>
+						<span><%= link_to organization.name, organization_path(organization) %><span>
+					</div>
+				<% end %>
+			<div class="hero-unit-header margin-top"><h2>All Organizations (<%= @organizations.size %>)</h2></div>
+				<% @organizations.each do |organization| %>
+					<div class="search-table-entry">
+						<%= icon_image_tag_for organization %>
+						<span><%= link_to organization.name, organization_path(organization) %><span>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	
+	</div>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= link_to organization.name, organization_path(organization) %></td>
-        <td><%= organization.email %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
 
 <% content_for :additional_scripts do %>
     <script type="text/javascript">
