@@ -8,7 +8,7 @@
 		<div class="hero-unit">
 			<div class="hero-unit-header"><h2>Upcoming Events</h2></div>
 				<% @events.each do |event| %>
-					<div class="search-table-entry highlight">
+					<div class="search-table-entry">
 						<%= icon_event_image_tag_for event %>
 						<div class="entry-text">
 							<div class="info">On <strong><%= event.date ? event.date.strftime('%B %d') : 'none' %></strong> hosted by <strong><%= event.organization.name %></strong></div>
