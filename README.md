@@ -25,4 +25,4 @@ A demo is served courtesy of Heroku at http://fundit.herokuapp.com
 * [Rails](http://rubyonrails.org/)
 * [jQuery](http://jquery.com/)
 * [twitter-boostrap-rails](https://github.com/seyhunak/twitter-bootstrap-rails)
-* [Evan Eckard, dinpattern.com](http://www.dinpattern.com/2011/07/27/bit-tile-blue/)
+* [BalusC, Form clear button](http://stackoverflow.com/a/2803922)
