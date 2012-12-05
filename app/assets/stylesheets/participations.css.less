@@ -2,8 +2,103 @@
 // They will automatically be included in application.css.
 // You can use Less here: http://lesscss.org/
 
-.sharebox{
-	border: 1px solid #DDD;
-	background: #F4F4F4;
-	padding: 10px;
+.participations {
+    .sharebox{
+    	border: 1px solid #DDD;
+    	background: #F4F4F4;
+    	padding: 10px;
+    }
+
+    .participation-header {
+        padding-top: 40px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+
+
+        .participation-controls {
+            border-left: 1px solid #ccc;
+            padding-left: 20px;
+            height: 100px;
+
+            a {
+                text-transform: uppercase;
+                display: block;
+                padding-bottom: 10px;
+                font-size: 12px;
+
+                &.share-participation {
+                    margin-top: 20px;
+                    font-weight: 900;
+                }
+            }
+
+            .dropdown-menu:after {
+                content: '';
+                display: inline-block;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-bottom: 6px solid #ffffff;
+                position: absolute;
+                top: -6px;
+                left: 10px;
+            }
+            .dropdown-menu:before {
+                content: '';
+                display: inline-block;
+                border-left: 7px solid transparent;
+                border-right: 7px solid transparent;
+                border-bottom: 7px solid #ccc;
+                border-bottom-color: rgba(0, 0, 0, 0.2);
+                position: absolute;
+                top: -7px;
+                left: 9px;
+            }
+        }
+
+        .participation-icon {
+            float: left;
+
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 10px;
+            }
+        }
+
+        .participation-details {
+            padding-left: 20px;
+            margin-left: 120px;
+
+            p.participation-support {
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            p.participation-date {
+                margin-bottom: 0;
+                text-transform: uppercase;
+                color: #b9b9b9;
+                font-weight: 600;
+                font-size: 13px;
+            }
+
+            p.participation-event {
+                font-size: 26px;
+                font-weight: 900;
+            }
+
+            p.participation-info-links {
+                font-size: 13px;
+
+                a {
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+
+
+    .participation-body {
+        padding-top: 20px;
+    }
 }

@@ -26,3 +26,5 @@ A demo is served courtesy of Heroku at http://fundit.herokuapp.com
 * [jQuery](http://jquery.com/)
 * [twitter-boostrap-rails](https://github.com/seyhunak/twitter-bootstrap-rails)
 * [BalusC, Form clear button](http://stackoverflow.com/a/2803922)
+* [Brock Kenzler, from The Noun Project](http://thenounproject.com/noun/piggy-bank/#icon-No925)
+* [Sharrre](http://sharrre.com/)
