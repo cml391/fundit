@@ -115,5 +115,5 @@
 
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 <script type="text/javascript">
-  Stripe.setPublishableKey("<%= @participation.event.organization.stripe_pub_key %>");
+  Stripe.setPublishableKey("<%= j @participation.event.organization.stripe_pub_key %>");
 </script>
