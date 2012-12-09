@@ -7,14 +7,18 @@
 	<div class="search-table-center span7">
 		<div class="hero-unit">
 			<div class="hero-unit-header"><h2>Upcoming Events (<%= @events.size %>)</h2></div>
-				<% @events.each do |event| %>
-					<div class="search-table-entry">
-						<%= icon_event_image_tag_for event %>
-						<div class="entry-text">
-							<div class="info">On <strong><%= event.date ? event.date.strftime('%B %d') : 'none' %></strong> hosted by <strong><%= event.organization.name %></strong></div>
-							<div class="title"><%= link_to event.name, event_path(event) %></div>
+				<% if @events.empty? %>
+						<p>No upcoming events.</p>
+				<% else %>
+					<% @events.each do |event| %>
+						<div class="search-table-entry">
+							<%= icon_event_image_tag_for event %>
+							<div class="entry-text">
+								<div class="info">On <strong><%= event.date ? event.date.strftime('%B %d') : 'none' %></strong> hosted by <strong><%= event.organization.name %></strong></div>
+								<div class="title"><%= link_to event.name, event_path(event) %></div>
+							</div>
 						</div>
-					</div>
+					<% end %>
 				<% end %>
 		</div>
 

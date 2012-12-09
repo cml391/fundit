@@ -27,8 +27,8 @@
 										<% end %>
 								</div>
 						</div>
-						<div class="controls span3">
-							<% if @volunteer == current_user %>
+						<% if @volunteer == current_user %>
+							<div class="controls span3">
 								<%= link_to edit_volunteer_participation_path(@volunteer, @participation), :class => 'participation-control-link' do %>
 										Edit Participation Page
 								<% end %>
@@ -66,8 +66,8 @@
 										</li>
 									</ul>
 								</div>
-							<% end %>
-						</div>
+							</div>
+						<% end %>
         </div>
         
     </div>

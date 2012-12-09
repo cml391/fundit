@@ -42,36 +42,44 @@
 				<div class="hero-unit-header">
 					<h2>Upcoming Events (<%= @futureevents.length %>)</h2>
 				</div>
-				<% @futureevents.each do |event| %>
-					<div class="event" id=<%=event.id %>>
-						<%= link_to event.name, organization_event_path(@organization, event) %>
-						<span class="moredetails">
-							<div class="expandbtn">+</div>
-							<div class="hiddeninfo hidden"%>
-									<div class="eventdescription">
-										<p><strong><%= event.date ? event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
-										<%= event.description %>
-									</div>
-								</div>
-						</span>
-					</div>
-				<% end %>
-				<div class="hero-unit-header">
-					<h2>Past Events (<%= @pastevents.length %>)</h2>
-				</div>
-					<% @pastevents.each do |event| %>
+				<% if @pastevents.empty? %>
+						<p>No upcoming events.</p>
+				<% else %>
+					<% @futureevents.each do |event| %>
 						<div class="event" id=<%=event.id %>>
 							<%= link_to event.name, organization_event_path(@organization, event) %>
 							<span class="moredetails">
 								<div class="expandbtn">+</div>
 								<div class="hiddeninfo hidden"%>
-									<div class="eventdescription">
-										<p><strong><%= event.date ? event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
-										<%= event.description %>
+										<div class="eventdescription">
+											<p><strong><%= event.date ? event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
+											<%= event.description %>
+										</div>
 									</div>
-								</div>
 							</span>
 						</div>
+					<% end %>
+				<% end %>
+				<div class="hero-unit-header">
+					<h2>Past Events (<%= @pastevents.length %>)</h2>
+				</div>
+					<% if @pastevents.empty? %>
+						<p>No past events.</p>
+					<% else %>
+						<% @pastevents.each do |event| %>
+							<div class="event" id=<%=event.id %>>
+								<%= link_to event.name, organization_event_path(@organization, event) %>
+								<span class="moredetails">
+									<div class="expandbtn">+</div>
+									<div class="hiddeninfo hidden"%>
+										<div class="eventdescription">
+											<p><strong><%= event.date ? event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
+											<%= event.description %>
+										</div>
+									</div>
+								</span>
+							</div>
+						<% end %>
 					<% end %>
       </div>
 		</div>
