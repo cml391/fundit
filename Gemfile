@@ -28,6 +28,7 @@ group :test, :development do
   gem 'sqlite3'
   gem 'pry'
   gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
 end
 
 group :production do

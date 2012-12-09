@@ -177,12 +177,12 @@
     </script>
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 	<script type="text/javascript">
-	  Stripe.setPublishableKey("<%= @participation.event.organization.stripe_pub_key %>");
+	  Stripe.setPublishableKey("<%= j @participation.event.organization.stripe_pub_key %>");
 	</script>
     <script type="text/javascript">
-        Participation.eventName = "<%= @event.name %>";
-        Participation.eventDate = "<%= @event.date.strftime('%B %d, %Y') %>";
-        Participation.url = "<%= request.protocol + request.host_with_port + volunteer_participation_path(@volunteer, @participation) %>";
-        Participation.volunteerName = "<%= @volunteer.full_name %>"
+        Participation.eventName = "<%= j @event.name %>";
+        Participation.eventDate = "<%= j @event.date.strftime('%B %d, %Y') %>";
+        Participation.url = "<%= j(request.protocol + request.host_with_port + volunteer_participation_path(@volunteer, @participation)) %>";
+        Participation.volunteerName = "<%= j @volunteer.full_name %>"
     </script>
 <% end %>

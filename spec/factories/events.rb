@@ -2,7 +2,10 @@
 
 FactoryGirl.define do
   factory :event do
-    organization_id 1
-    description "MyText"
+    organization
+
+    description 'Foo Event is an event.'
+    name 'Foo Event'
+    date 3.days.from_now
   end
 end

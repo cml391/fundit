@@ -18,13 +18,23 @@ Then, do the Rails standard setup: `bundle install`, `rake db:migrate`,
 
 A demo is served courtesy of Heroku at http://fundit.herokuapp.com
 
+## Test Suite
+
+FundIt includes a test suite that exercises all public controller methods.
+It can be run with `rake spec`.
+
 ### Acknowledgements
 
 * [Stripe](https://stripe.com/)
 * [Twitter Boostrap](http://twitter.github.com/bootstrap/)
 * [Rails](http://rubyonrails.org/)
+* [RSpec](http://rspec.info/)
+* [Factory Girl](https://github.com/thoughtbot/factory_girl)
+* [Coffeescript](http://coffeescript.org/)
+* [Less CSS](http://lesscss.org/)
 * [jQuery](http://jquery.com/)
 * [twitter-boostrap-rails](https://github.com/seyhunak/twitter-bootstrap-rails)
 * [BalusC, Form clear button](http://stackoverflow.com/a/2803922)
 * [Brock Kenzler, from The Noun Project](http://thenounproject.com/noun/piggy-bank/#icon-No925)
-* [Sharrre](http://sharrre.com/)
+* [bootstrap-datepicker](http://www.eyecon.ro/bootstrap-datepicker/)
+

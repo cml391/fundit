@@ -1,5 +1,5 @@
 class OfflineDonation < ActiveRecord::Base
-  attr_accessible :amount, :name, :donation_type, :is_name_private, :is_amount_private, :email
+  attr_accessible :amount, :name, :donation_type, :is_name_private, :is_amount_private, :email, :thank_you_sent
   belongs_to :participation
 
   validates :amount, :presence => true, :numericality => {:only_integer => true, :greater_than => 0}

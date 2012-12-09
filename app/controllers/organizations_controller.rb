@@ -21,7 +21,7 @@ class OrganizationsController < ApplicationController
       @followalready = Organization.follow_already(current_user.id, @organization.id)
     end
 
-    @futureevents = @organization.events.where(['date >= ?', DateTime.now]) 
+    @futureevents = @organization.events.where(['date >= ?', DateTime.now])
     @pastevents = @organization.events.where(['date < ?', DateTime.now])
 
     respond_to do |format|
@@ -85,7 +85,9 @@ class OrganizationsController < ApplicationController
   # POST /organizations/1/follow
   def follow
     if Organization.follow_already(current_user.id, @organization.id)
-      format.html { redirect_to @organization, notice: 'You already follow the organization.' }
+      respond_to do |format|
+        format.html { redirect_to @organization, notice: 'You already follow the organization.' }
+      end
     else
       @follow = Follow.new(params[:follow])
 
