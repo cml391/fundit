@@ -42,7 +42,7 @@
 				<div class="hero-unit-header">
 					<h2>Upcoming Events (<%= @futureevents.length %>)</h2>
 				</div>
-				<% if @pastevents.empty? %>
+				<% if @futureevents.empty? %>
 						<p>No upcoming events.</p>
 				<% else %>
 					<% @futureevents.each do |event| %>
