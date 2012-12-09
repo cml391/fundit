@@ -40,8 +40,8 @@ dark gray					#DDDDDD
  		margin-top: 10px;
  }
 
- #donationForm{
- 		margin-top: 0px;
+ #donationForm form{
+ 		margin-top: 20px;
  }
 
  #donationForm .control-group{
@@ -60,20 +60,6 @@ dark gray					#DDDDDD
  		text-align: center;
  		margin-bottom: 20px;
  }
-
-.biobox {
-	border: 1px solid rgba(158, 190, 166, 0.6);
-	background: rgba(158, 190, 166, 0.3);
-	padding: 10px;
-}
-
-.biobox a{
-	color: #333;
-}
-
-.biobox .row{
-	margin-left:0px;
-}
 
 .center-header h1, .center-header h2{
 		display: block;
@@ -252,10 +238,18 @@ dark gray					#DDDDDD
 .profile-pic{
 	width:125px;
 	display:inline-block;
+	border-radius: 10px;
 }
 
 img.icon-pic-center{
 	width:60px;
+	display:inline-block;
+	border-radius: 5px;
+	vertical-align: middle;
+}
+
+img.mini-icon-pic{
+	width:40px;
 	display:inline-block;
 	border-radius: 5px;
 	vertical-align: middle;
@@ -285,4 +279,72 @@ img.icon-pic-top{
 
 .clear {
 	clear: both;
+}
+
+.info-header{
+	margin-top:40px;
+	border-bottom: 1px solid #DDD;
+	
+	p.heading{
+		font-size: 30px;
+		font-weight: bold;
+	}
+	
+	p.email{
+		color: #777;
+		font-weight: 600;
+		margin-top:14px;
+		margin-bottom:16px;
+	}
+	
+	.controls .btn-edit{
+			text-transform:uppercase;
+			padding: 6px 20px;
+		}
+}
+
+.sidebar{
+	margin-left: -40px !important;
+	padding-left: 40px;
+	.heading{
+		border-bottom: 1px solid #DDD;
+		height: 60px;
+		font-weight:bold;
+		font-size: 20px;
+		line-height: 60px;
+		padding-left: 25px;
+	}
+	
+}	
+
+.main-content{
+		margin-left:0px !important;
+		margin-right: -25px;
+		padding: 20px 25px 0px 40px;
+		border-left: 1px solid #DDD;
+}
+
+.hidden{
+		display: none;
+}
+
+i.inactive{
+	color: #DDD;
+}
+
+i.black{
+	color: #111;
+}
+
+i.black:hover{
+	color: #207499;
+	text-decoration: none;
+}
+
+.entry-icon{
+	float:right;
+	
+	a{
+		padding: 20px 5px;
+	}
 }

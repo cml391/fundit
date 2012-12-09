@@ -1,37 +1,63 @@
-<div class="page-header center-header">
-  <h1><%= @event.name %></h1>
-  <h2 class="nonBoldHeader">Run by <%= @event.organization.name%> </h2>
-</div>
-<div class="container-fluid">
-  <div class="row-fluid">
-		<div class="span7">
-				<h2><span class="nonBoldHeader">Join us on </span><%= @event.date ? @event.date.strftime('%B %d, %Y') : 'none' %></h2>
-				<div class="biobox">
-					<div class="description"><%= @event.description %></div>
-					<p><strong><%= link_to ("More about " + @event.organization.name + " &raquo;").html_safe, organization_path(@event.organization) %></strong></p>
-				</div>
+<div class="info-header">
+		<div class="row">
+			<div class="span2">
+			<%= profile_event_image_tag_for @event %>
+			</div>
+			<div class="details span7">
+				<p class="small-heading"> 
+					Hosted by <%= @event.organization.name %>
+				</p>
+				<p class="heading">
+					<%= @event.name %>
+				</p>
+				<p class="info-links">
+					<%= link_to organization_path(@event.organization)  do %>
+                            <i class="icon-user"></i>
+                            More about <%= @event.organization.name %>
+          <% end %>
+				</p>
+			</div>
+			<div class="span3 controls">
+				<% if @event.organization == current_user %>
+					<%= link_to 'Edit Event', edit_organization_event_path(@event.organization, @event), :class => 'btn btn-edit' %>
+				<% elsif !(current_user.kind_of? Organization) %>
+					<%= link_to 'Participate', new_volunteer_participation_path(current_user || 0, :event_id => @event.id), :class => 'btn btn-warning' %>
+				<% end %>
+			</div>
 		</div>
-		<div class="span5 eventsbox">
-			<h2>Participants</h2>
+	</div>
+
+  <div class="row-fluid">
+		<div class="span7 sidebar">
+			<table>
+				<tr>
+					<td class="table-label">DATE</td>
+					<td><%= @event.date ? @event.date.strftime('%B %d, %Y') : 'none' %></td>
+				</tr>
+				<tr>
+					<td class="table-label"> DETAILS </td>
+					<td><%= @event.description %></td>
+				</tr>
+			</table>
+		</div>
+		<div class="span6 main-content">
+			<div class="hero-unit">
+				<div class="hero-unit-header">
+					<h2>Participants (<%= @event.participations.length %>)</h2>
+				</div>
             <% if @event.participations.empty? %>
                 <p>No participants yet.</p>
             <% else %>
-    			<table class="table table-bordered table-background">
-        			<tbody>
-        					<% @event.participations.each do |participation| %>
-        							<tr><td><%= link_to participation.volunteer.full_name , volunteer_participation_path(participation.volunteer, participation) %></tr></td>
-        					<% end %>
-        			</tbody>
-    			</table>
+        			<% @event.participations.each do |participation| %>
+            		<div class="search-table-entry">
+            			<%= mini_icon_image_tag_for participation.volunteer %>
+            			<div class="entry-text">
+        						<%= link_to participation.volunteer.full_name , volunteer_participation_path(participation.volunteer, participation) %>
+        					</div>
+        				</div>
+        			<% end %>
             <% end %>
+      </div>
 		</div>
 	</div>
-</div>
-
-<div class="form-actions">
-  <% if @event.organization == current_user %>
-    <%= link_to 'Edit Event', edit_organization_event_path(@event.organization, @event), :class => 'btn' %>
-  <% elsif !(current_user.kind_of? Organization) %>
-    <%= link_to 'Participate', new_volunteer_participation_path(current_user || 0, :event_id => @event.id), :class => 'btn' %>
-  <% end %>
 </div>

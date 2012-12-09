@@ -1,84 +1,82 @@
 <div class="container-fluid">
-    <div class="row-fluid participation-header">
-        <div class="<%= @volunteer == current_user ? 'span8' : 'span12' %>">
-            <div class="clear"></div>
-                <div class="participation-icon">
-                    <img src="/assets/blank-event.png" />
-                </div>
-                <div class="participation-details">
-                    <p class="participation-support">
-                        Support <%= @volunteer.name %>'s
-                        participation in:
-                    </p>
-                    <p class="participation-date">
-                        <%= @event.date.strftime('%B %d, %Y') %>
-                    </p>
-                    <p class="participation-event">
-                        <%= @event.name %>
-                    </p>
-                    <p class="participation-info-links">
-                        <%= link_to volunteer_path(@volunteer)  do %>
-                            <i class="icon-user"></i>
-                            More about <%= @volunteer.name %>
-                        <% end %>
-
-                        <%= link_to organization_event_path(@event.organization, @event)  do %>
-                            <i class="icon-calendar"></i>
-                            More about <%= @event.name %>
-                        <% end %>
-                    </p>
-                </div>
-            <div class="clear"></div>
-        </div>
-        <% if @volunteer == current_user %>
-            <div class="span4 participation-controls">
-                <%= link_to edit_volunteer_participation_path(@volunteer, @participation), :class => 'participation-control-link' do %>
-                    Edit Participation Page
-                <% end %>
-
-                <%= link_to offline_donate_volunteer_participation_path(@volunteer, @participation), :class => 'participation-control-link' do %>
-                    Log Offline Donation
-                <% end %>
-
-                <div class="dropdown">
-                    <a class="dropdown-toggle share-participation" data-toggle="dropdown" href="#">
-                        <i class="icon-plus"></i>
-                        Share
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li>
-                            <a href="#" class="twitter-link">
-                                <i class="icon-twitter"></i>
-                                Twitter
-                            </a>
-                        </li>
-                        <!--
-                        <li>
-                            <a href="#" class="facebook-link">
-                                <i class="icon-facebook"></i>
-                                Facebook
-                            </a>
-                        </li>
-                        -->
-                        <li>
-                            <a href="#" class="email-link">
-                                <i class="icon-envelope"></i>
-                                Email
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
+    <div class="info-header">
+        <div class="row">
+            <div class="span2">
+                <%= profile_event_image_tag_for @participation.event %>
             </div>
-        <% end %>
+						<div class="span6 details">
+								<p class="participation-support">
+										Support <%= @volunteer.name %>'s
+										participation in:
+								</p>
+								<p class="participation-date">
+										<%= @event.date.strftime('%B %d, %Y') %>
+								</p>
+								<p class="participation-event">
+										<%= @event.name %>
+								</p>
+								<div class="participation-info-links">
+										<%= link_to volunteer_path(@volunteer)  do %>
+												<i class="icon-user"></i>
+												More about <%= @volunteer.name %>
+										<% end %>
+
+										<%= link_to organization_event_path(@event.organization, @event)  do %>
+												<i class="icon-calendar"></i>
+												More about this event
+										<% end %>
+								</div>
+						</div>
+						<div class="controls span3">
+							<% if @volunteer == current_user %>
+								<%= link_to edit_volunteer_participation_path(@volunteer, @participation), :class => 'participation-control-link' do %>
+										Edit Participation Page
+								<% end %>
+
+								<%= link_to offline_donate_volunteer_participation_path(@volunteer, @participation), :class => 'participation-control-link' do %>
+										Log Offline Donation
+								<% end %>
+
+								<div class="dropdown">
+									<a class="dropdown-toggle share-participation" data-toggle="dropdown" href="#">
+											<i class="icon-plus"></i>
+											Share
+											<b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+										<li>
+											<a href="#" class="twitter-link">
+													<i class="icon-twitter"></i>
+													Twitter
+											</a>
+										</li>
+										<!--
+										<li>
+											<a href="#" class="facebook-link">
+													<i class="icon-facebook"></i>
+													Facebook
+											</a>
+										</li>
+										-->
+										<li>
+												<a href="#" class="email-link">
+														<i class="icon-envelope"></i>
+														Email
+												</a>
+										</li>
+									</ul>
+								</div>
+							<% end %>
+						</div>
+        </div>
+        
     </div>
 
 
 
 
   <div class="row-fluid participation-body">
-		<div class="span7">
+		<div class="span7 sidebar">
 			<div class="row">
 				<div class="span3 statistic offset1">
 					<small> Raised Online</small>
@@ -105,8 +103,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="span10 offset1">
+			<div class="row progress-row">
+				<div class="span11">
 					<div class="progress">
 						<div class="bar bar-warning" id="onlineBar"></div>
 						<div class="bar bar-info" id="offlineBar"></div>
@@ -118,50 +116,54 @@
 				<strong>A Message From <%= @participation.volunteer.name%></strong>
 				<p><%= @participation.note %></p>
 			</div>
-			<div>
+			<div class="donation-history">
 
 				<h2> Donation History </h2>
                 <% if @participation.donations.empty? && @participation.offline_donations.empty?%>
                     <p>No donations yet.</p>
                 <% else %>
-    				<table class="table table-bordered">
-    					<% (@participation.donations + @participation.offline_donations).each do |donation| %>
-    						<% if donation.all_private != true %>
-            					<tr>
-            						<% if @volunteer == current_user %>
-            						<td>
-            							<%= donation.private_history_message %>
-            						</td>
-            						<td>
+    				<table class="table">
+    					<% (@participation.donations + @participation.offline_donations).reverse.each do |donation| %>
+							<tr>
+								<td class="date"> <%= donation.created_at ? donation.created_at.strftime('%m/%d') : 'none' %></td>
+								<% if @volunteer == current_user %>
+								<td>
+									<%= donation.private_history_message %>
+								</td>
+								<td>
 
-            							<% if donation.email? and !donation.thank_you_sent? %>
-            								<%= link_to "Send a Thank-You",
-            								            thank_volunteer_participation_path(
-            								            	@volunteer,
-            								            	@participation,
-            								            	:donation_id => donation.id.to_s,
-                                                            :donation_type => (donation.kind_of?(OfflineDonation) ? 'offline' : 'online')) %>
-            							<% elsif donation.email? %>
-            								Thank-you sent.
-            							<% else %>
-            								No email given.
-            							<% end %>
+									<% if donation.email? and !donation.thank_you_sent? %>
+										<%= link_to '<i class="icon-envelope icon-large black"></i>'.html_safe,
+																thank_volunteer_participation_path(
+																	@volunteer,
+																	@participation,
+																	:donation_id => donation.id.to_s,
+																										:donation_type => (donation.kind_of?(OfflineDonation) ? 'offline' : 'online')) %>
+									<% elsif donation.email? %>
+										<i class="icon-envelope icon-large inactive"></i>
+									<% end %>
 
-            						</td>
-            						<% else %>
-            						<td>
-            							<%= donation.share_history_message %>
-            						</td>
-            						<% end %>
-            					</tr>
-            				<% end %>
+								</td>
+								<% else %>
+									<% if donation.all_private != true %>
+										<td>
+											<%= donation.share_history_message %>
+										</td>
+									<% end %>
+								<% end %>
+							</tr>
             			<% end %>
     				</table>
                  <% end %>
     		</div>
 		</div>
-		<div class="span5 eventsbox" id="donationForm">
-			<%= render :partial => 'donate_form' %>
+		<div class="span6 main-content" id="donationForm">
+			<div class="hero-unit">
+				<div class="hero-unit-header">
+					<h2> Donate Now! </h2>
+				</div>
+				<%= render :partial => 'donate_form' %>
+			</div>
 		</div>
 	</div>
 </div>

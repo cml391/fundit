@@ -3,31 +3,28 @@
 // You can use Less here: http://lesscss.org/
 
 .participations {
+		
     .sharebox{
     	border: 1px solid #DDD;
     	background: #F4F4F4;
     	padding: 10px;
     }
 
-    .participation-header {
-        padding-top: 40px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-
-
-        .participation-controls {
+    .info-header {
+    		padding-bottom: 10px;
+        .controls {
             border-left: 1px solid #ccc;
             padding-left: 20px;
-            height: 100px;
+            height: 125px;
 
             a {
                 text-transform: uppercase;
                 display: block;
                 padding-bottom: 10px;
-                font-size: 12px;
+                font-size: 14px;
 
                 &.share-participation {
-                    margin-top: 20px;
+                    margin-top: 40px;
                     font-weight: 900;
                 }
             }
@@ -55,50 +52,83 @@
             }
         }
 
-        .participation-icon {
-            float: left;
-
-            img {
-                width: 100px;
-                height: 100px;
-                border-radius: 10px;
-            }
-        }
-
-        .participation-details {
-            padding-left: 20px;
-            margin-left: 120px;
+        .details {
 
             p.participation-support {
-                font-size: 16px;
+                font-size: 20px;
                 font-weight: 600;
             }
 
             p.participation-date {
-                margin-bottom: 0;
                 text-transform: uppercase;
                 color: #b9b9b9;
                 font-weight: 600;
-                font-size: 13px;
+                font-size: 14px;
             }
 
             p.participation-event {
-                font-size: 26px;
-                font-weight: 900;
+                font-size: 32px;
+                font-weight: bold;
+                padding-top: 5px;
             }
 
-            p.participation-info-links {
-                font-size: 13px;
-
-                a {
-                    margin-right: 20px;
+            div.participation-info-links {
+                font-size: 14px;
+                font-weight: 600;
+                margin-left: 0px;
+                padding-top:10px;
+                
+                a{
+                	padding-right: 30px;
                 }
             }
         }
     }
-
-
-    .participation-body {
-        padding-top: 20px;
+    
+    #donationForm{
+    	padding-top:40px;
     }
+    
+    .sidebar{
+    	padding-top: 50px;
+    }
+    
+    .biobox {
+			border: 1px solid rgba(158, 190, 166, 0.6);
+			background: rgba(158, 190, 166, 0.3);
+			padding: 10px;
+			margin-right:40px;
+			margin-top:30px;
+			
+			strong{
+				text-transform: uppercase;
+				font-weight: 600;
+			}
+			
+			p{
+				margin-top:10px;
+			}
+		}
+		
+		.progress-row{
+			margin-left: 5px;
+		}
+		
+		.donation-history{
+			margin-top:30px;
+			margin-right: 40px;
+			
+			h2{
+				font-size: 25px;
+			}
+			
+			table {
+				font-size: 16px;
+				
+				.date{
+				font-weight: bold;
+				color: #d64f2a;
+				}
+			}
+		}
 }

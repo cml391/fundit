@@ -1,50 +1,115 @@
-<div class="page-header">
-  <%= profile_image_tag_for @volunteer %>
-  <h1><%= @volunteer.name %></h1>
 
-  <span class="toolbar">
-    <!-- <%= link_to 'Back', volunteers_path, :class => 'btn'  %> -->
-  <% if @volunteer == current_user %>
-    <%= link_to 'Edit Profile', edit_volunteer_path(@volunteer), :class => 'btn' %>
-  <% end %>
-  </span>
+<div class="container">
+	<div class="info-header">
+		<div class="row">
+			<div class="span2">
+			<%= profile_image_tag_for @volunteer %>
+			</div>
+			<div class="details span7">
+				<p class="heading"> 
+					<%= @volunteer.full_name %>
+				</p>
+				<p class="email">
+					<%= @volunteer.email %>
+				</p>
+				<p class="about">
+					<%= @volunteer.bio %>
+				</p>
+			</div>
+			<% if @volunteer == current_user %>
+				<div class="span2 offset1 controls">
+					<%= link_to 'Edit Profile', edit_volunteer_path(@volunteer), :class => 'btn btn-edit' %>
+				</div>
+			<% end %>
+		</div>
+	</div>
 
-</div>
-
-<dl class="container-fluid">
   <div class="row-fluid">
-    <div class="span4">
-      <div class="biobox">
-        <strong>About <%= @volunteer.name %></strong>
-        <br /><br />
-        <strong>Email</strong><br />
-        <i><%= @volunteer.email %></i>
-        <br /><br />
-        <strong>Follows</strong><br />
-        <% @volunteer.follows.each do |follow| %>
-          <%= link_to follow.organization.name, organization_path(follow.organization) %><br />
+    <div class="span5 sidebar">
+        <div class="heading">
+        	Following (<%= @volunteer.follows.length %>)
+        </div>
+        <div class="sidebar-content follow-box">
+					<% @volunteer.follows.each do |follow| %>
+						<%= link_to follow.organization.name, organization_path(follow.organization) %>, 
+					<% end %>
+        </div>
+        <% if @volunteer == current_user %>
+        <div class="heading top-border">
+        	Participated in (<%= @volunteer.participations.length %>)
+        </div>
+        <div class="sidebar-content participation-box">
+					<% @volunteer.participations.each do |participation| %>
+						<div class="event" id=<%=participation.event.id %>>
+							<%= link_to participation.event.name, volunteer_participation_path(participation.volunteer, participation) %>
+							<span class="moredetails">
+								<div class="expandbtn">+</div>
+								<div class="hiddeninfo hidden"%>
+									<div class="eventdescription">
+										<p><strong><%= participation.event.date ? participation.event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
+										<%= participation.event.description %>
+									</div>
+								</div>
+							</span>
+						</div>
+					<% end %>
+        </div>
         <% end %>
-      </div>
     </div>
 
-    <div class="span8">
-      <div class="eventsbox">
-        <h3>Participated in (<%= @volunteer.participations.length %>)</h3>
-        <% @volunteer.participations.each do |participation| %>
-          <div class="event" id=<%=participation.event.id %>>
-            <%= link_to participation.event.name, volunteer_participation_path(participation.volunteer, participation) %>
-            <span class="moredetails">
-              <div class="expandbtn">+</div>
-              <div class="hiddeninfo"%>
-                <p class="eventdescription"><%= participation.event.date %><br /><%= participation.event.description %></p>
-                <% if participation.event.organization == current_user %>
-                  <%= link_to 'Edit Event', edit_organization_event_path(participation.event.organization, participation.event), :class => 'btn' %>
-                <% elsif !(current_user.kind_of? Organization) %>
-                  <%= link_to 'Participate', new_volunteer_participation_path(current_user || 0, :event_id => participation.event.id), :class => 'btn' %>
-                <% end %>
-              </div>
-            </span>
-          </div>
+    <div class="span8 main-content">
+      <div class="hero-unit recent-activity">
+         <% if @volunteer == current_user %>
+         	<div class="hero-unit-header">
+						<h2>Recent Activity</h2>
+					</div>
+					<% if @volunteer.donations.empty? %>
+              <p>No recent activity.</p>
+          <% else %>
+						<% @volunteer.donations.reverse.first(10).each do |donation| %>
+							<div class="search-table-entry">
+								<%= image_tag("donation.png", :class => 'icon-pic-top') %>
+								<div class="entry-text">
+									<div class="info"><strong><%= donation.name %></strong> donated:</div>
+									<div class="title">$<%= donation.amount %> to <%= donation.participation.event.name %></div>
+								</div>
+								<div class="entry-icon">
+									<% if donation.email? and !donation.thank_you_sent? %>
+										<%= link_to '<i class="icon-envelope icon-large black"></i>'.html_safe,
+            							thank_volunteer_participation_path(
+            							@volunteer,
+            							donation.participation,
+            							:donation_id => donation.id.to_s,
+                          :donation_type => (donation.kind_of?(OfflineDonation) ? 'offline' : 'online')) %>
+            			<% elsif donation.email? %>
+            				<i class="icon-envelope icon-large inactive"></i>
+            			<% end %>
+									<%= link_to '<i class="icon-eye-open icon-large black"></i>'.html_safe,
+            							volunteer_participation_path(@volunteer, donation.participation) %>
+								</div>
+							</div>
+						<% end %>
+					<%end%>
+         <% else %>
+					<div class="hero-unit-header">
+						<h2>Participated in (<%= @volunteer.participations.length %>)</h2>
+					</div>
+					<div class="sidebar-content participation-box">
+						<% @volunteer.participations.each do |participation| %>
+							<div class="event" id=<%=participation.event.id %>>
+								<%= link_to participation.event.name, volunteer_participation_path(participation.volunteer, participation) %>
+								<span class="moredetails">
+									<div class="expandbtn">+</div>
+									<div class="hiddeninfo hidden"%>
+										<div class="eventdescription">
+											<p><strong><%= participation.event.date ? participation.event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
+											<%= participation.event.description %>
+										</div>
+									</div>
+								</span>
+							</div>
+						<% end %>
+					</div>
         <% end %>
       </div>
     </div>

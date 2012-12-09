@@ -33,4 +33,7 @@ class OfflineDonation < ActiveRecord::Base
   	return share_message
   end
 
+	def full_name
+		return name
+	end
 end

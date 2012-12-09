@@ -1,77 +1,81 @@
-<div class="page-header">
-  <%= profile_image_tag_for @organization %>
-  <h1><%= @organization.name %></h1>
+<div class="info-header">
+		<div class="row">
+			<div class="span2">
+			<%= profile_image_tag_for @organization %>
+			</div>
+			<div class="details span7">
+				<p class="heading">
+					<%= @organization.name %>
+				</p>
+			</div>
+			<div class="span3 controls">
+				<% if current_user %>
+					<% if current_user == @organization %>
+						<%= link_to 'Edit Organization', edit_organization_path(@organization), :class => 'btn btn-edit' %>
+					<% else %>
+						<% if @followalready %>
+							<%= link_to 'Unfollow', unfollow_organization_path, :method => :delete, :class => 'btn btn-warning' %>
+						<% else %>
+							<%= link_to 'Follow', follow_organization_path, :method => :post, :class => 'btn btn-warning' %>
+						<% end %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
 
-  <span class="toolbar">
-    <% if current_user %>
-      <% if current_user == @organization %>
-        <%= link_to 'Edit Organization', edit_organization_path(@organization), :class => 'btn' %>
-      <% else %>
-        <% if @followalready %>
-          <%= link_to 'Unfollow', unfollow_organization_path, :method => :delete, :class => 'btn' %>
-        <% else %>
-          <%= link_to 'Follow', follow_organization_path, :method => :post, :class => 'btn' %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
-
-</span>
-
-<dl class="container-fluid">
   <div class="row-fluid">
-    <div class="span4">
-      <div class="biobox">
-        <strong>About <%= @organization.name %></strong><br />
-        <%= @organization.bio %>
-        <br /><br />
-        <strong>Email</strong><br />
-        <i><%= @organization.email %></i>
+		<div class="span7 sidebar">
+			<table>
+				<tr>
+					<td class="table-label">NAME</td>
+					<td><%= @organization.name %></td>
+				</tr>
+				<tr>
+					<td class="table-label"> ABOUT</td>
+					<td><%= @organization.bio %></td>
+				</tr>
+			</table>
+		</div>
+		<div class="span6 main-content">
+			<div class="hero-unit">
+				<div class="hero-unit-header">
+					<h2>Upcoming Events (<%= @futureevents.length %>)</h2>
+				</div>
+				<% @futureevents.each do |event| %>
+					<div class="event" id=<%=event.id %>>
+						<%= link_to event.name, organization_event_path(@organization, event) %>
+						<span class="moredetails">
+							<div class="expandbtn">+</div>
+							<div class="hiddeninfo hidden"%>
+									<div class="eventdescription">
+										<p><strong><%= event.date ? event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
+										<%= event.description %>
+									</div>
+								</div>
+						</span>
+					</div>
+				<% end %>
+				<div class="hero-unit-header">
+					<h2>Past Events (<%= @pastevents.length %>)</h2>
+				</div>
+					<% @pastevents.each do |event| %>
+						<div class="event" id=<%=event.id %>>
+							<%= link_to event.name, organization_event_path(@organization, event) %>
+							<span class="moredetails">
+								<div class="expandbtn">+</div>
+								<div class="hiddeninfo hidden"%>
+									<div class="eventdescription">
+										<p><strong><%= event.date ? event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
+										<%= event.description %>
+									</div>
+								</div>
+							</span>
+						</div>
+					<% end %>
       </div>
-    </div>
-
-    <div class="span8">
-      <div class="eventsbox">
-        <h3>Upcoming Events (<%= @futureevents.length %>)</h3>
-        <% @futureevents.each do |event| %>
-          <div class="event" id=<%=event.id %>>
-            <%= link_to event.name, organization_event_path(@organization, event) %>
-            <span class="moredetails">
-              <div class="expandbtn">+</div>
-              <div class="hiddeninfo"%>
-                <p class="eventdescription"><%= event.date %><br /><%= event.description %></p>
-                <% if event.organization == current_user %>
-                  <%= link_to 'Edit Event', edit_organization_event_path(event.organization, event), :class => 'btn' %>
-                <% elsif !(current_user.kind_of? Organization) %>
-                  <%= link_to 'Participate', new_volunteer_participation_path(current_user || 0, :event_id => event.id), :class => 'btn' %>
-                <% end %>
-              </div>
-            </span>
-          </div>
-        <% end %>
-
-
-        <h3>Past Events (<%= @pastevents.length %>)</h3>
-        <% @pastevents.each do |event| %>
-          <div class="event" id=<%=event.id %>>
-            <%= link_to event.name, organization_event_path(@organization, event) %>
-            <span class="moredetails">
-              <div class="expandbtn">+</div>
-              <div class="hiddeninfo"%>
-                <p class="eventdescription"><%= event.date %><br /><%= event.description %></p>
-                <% if event.organization == current_user %>
-                  <%= link_to 'Edit Event', edit_organization_event_path(event.organization, event), :class => 'btn' %>
-                <% elsif !(current_user.kind_of? Organization) %>
-                  <%= link_to 'Participate', new_volunteer_participation_path(current_user || 0, :event_id => event.id), :class => 'btn' %>
-                <% end %>
-              </div>
-            </span>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-  </div>
+		</div>
+	</div>
 </div>
 
 <% content_for :additional_scripts do %>

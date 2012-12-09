@@ -1,6 +1,4 @@
 
-<h2 id="donateHeader" class="span12">Donate Now!</h2>
-
 	<%= form_for @donation, :url => donate_volunteer_participation_path(@participation.volunteer, @participation),
 										:html => { :class => 'form-horizontal donate-form', :id => 'stripe-payment-form' } do |f| %>
 
