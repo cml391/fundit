@@ -1,6 +1,6 @@
 class DropFollows < ActiveRecord::Migration
 def up
-    drop_table :follows
+    drop_table :follows if self.table_exists?("follows")
   end
 
   def down
