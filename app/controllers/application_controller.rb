@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
 
   # Redirects to root_url unless the user is logged in.
   def require_user
-    puts request.fullpath
     unless current_user
       session[:return_to] = request.fullpath
       redirect_to login_url, :alert => "You must be logged in to do that."

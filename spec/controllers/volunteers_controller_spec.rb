@@ -20,48 +20,48 @@ require 'spec_helper'
 
 describe VolunteersController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Volunteer. As you add validations to Volunteer, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {}
-  end
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # VolunteersController. Be sure to keep this updated too.
-  def valid_session
-    {}
-  end
-
   describe "GET index" do
-    it "assigns all volunteers as @volunteers" do
-      volunteer = Volunteer.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:volunteers).should eq([volunteer])
+    it "assigns all volunteers as @volunteers, ordered by name" do
+      Volunteer.all.each &:destroy
+      v1 = create :volunteer, :name => 'b'
+      v2 = create :volunteer, :name => 'a'
+      v3 = create :volunteer, :name => 'c'
+
+      get :index
+      assigns(:volunteers).should eq([v2, v1, v3])
     end
   end
 
   describe "GET show" do
     it "assigns the requested volunteer as @volunteer" do
-      volunteer = Volunteer.create! valid_attributes
-      get :show, {:id => volunteer.to_param}, valid_session
+      volunteer = create :volunteer
+      get :show, :id => volunteer.id
       assigns(:volunteer).should eq(volunteer)
     end
   end
 
   describe "GET new" do
     it "assigns a new volunteer as @volunteer" do
-      get :new, {}, valid_session
+      get :new
       assigns(:volunteer).should be_a_new(Volunteer)
     end
   end
 
   describe "GET edit" do
+    before :each do
+      @volunteer = log_in_as :volunteer
+    end
+
     it "assigns the requested volunteer as @volunteer" do
-      volunteer = Volunteer.create! valid_attributes
-      get :edit, {:id => volunteer.to_param}, valid_session
+      volunteer = create :volunteer
+      get :edit, :id => volunteer.id
       assigns(:volunteer).should eq(volunteer)
+    end
+
+    it "requires the user to be the volunteer" do
+      log_in_as :volunteer
+      get :edit, :id => @volunteer.id
+      response.should redirect_to(root_url)
     end
   end
 
@@ -69,19 +69,14 @@ describe VolunteersController do
     describe "with valid params" do
       it "creates a new Volunteer" do
         expect {
-          post :create, {:volunteer => valid_attributes}, valid_session
+          post :create, :volunteer => attributes_for(:volunteer)
         }.to change(Volunteer, :count).by(1)
       end
 
       it "assigns a newly created volunteer as @volunteer" do
-        post :create, {:volunteer => valid_attributes}, valid_session
+        post :create, :volunteer => attributes_for(:volunteer)
         assigns(:volunteer).should be_a(Volunteer)
         assigns(:volunteer).should be_persisted
-      end
-
-      it "redirects to the created volunteer" do
-        post :create, {:volunteer => valid_attributes}, valid_session
-        response.should redirect_to(Volunteer.last)
       end
     end
 
@@ -89,75 +84,65 @@ describe VolunteersController do
       it "assigns a newly created but unsaved volunteer as @volunteer" do
         # Trigger the behavior that occurs when invalid params are submitted
         Volunteer.any_instance.stub(:save).and_return(false)
-        post :create, {:volunteer => {}}, valid_session
+        post :create, :volunteer => {}
         assigns(:volunteer).should be_a_new(Volunteer)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Volunteer.any_instance.stub(:save).and_return(false)
-        post :create, {:volunteer => {}}, valid_session
+        post :create, :volunteer => {}
         response.should render_template("new")
       end
     end
   end
 
   describe "PUT update" do
+    before :each do
+      @volunteer = log_in_as :volunteer
+    end
+
     describe "with valid params" do
       it "updates the requested volunteer" do
-        volunteer = Volunteer.create! valid_attributes
         # Assuming there are no other volunteers in the database, this
         # specifies that the Volunteer created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Volunteer.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => volunteer.to_param, :volunteer => {'these' => 'params'}}, valid_session
+        put :update, :id => @volunteer.to_param, :volunteer => {'these' => 'params'}
       end
 
       it "assigns the requested volunteer as @volunteer" do
-        volunteer = Volunteer.create! valid_attributes
-        put :update, {:id => volunteer.to_param, :volunteer => valid_attributes}, valid_session
-        assigns(:volunteer).should eq(volunteer)
+        put :update, :id => @volunteer.to_param, :volunteer => attributes_for(:volunteer)
+        assigns(:volunteer).should eq(@volunteer)
       end
 
       it "redirects to the volunteer" do
-        volunteer = Volunteer.create! valid_attributes
-        put :update, {:id => volunteer.to_param, :volunteer => valid_attributes}, valid_session
-        response.should redirect_to(volunteer)
+        put :update, :id => @volunteer.to_param, :volunteer => attributes_for(:volunteer)
+        response.should redirect_to(@volunteer)
+      end
+
+      it "requires the user to be the volunteer" do
+        log_in_as :volunteer
+        put :update, :id => @volunteer.to_param, :volunteer => attributes_for(:volunteer)
+        response.should redirect_to(root_url)
       end
     end
 
     describe "with invalid params" do
       it "assigns the volunteer as @volunteer" do
-        volunteer = Volunteer.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Volunteer.any_instance.stub(:save).and_return(false)
-        put :update, {:id => volunteer.to_param, :volunteer => {}}, valid_session
-        assigns(:volunteer).should eq(volunteer)
+        put :update, :id => @volunteer.to_param, :volunteer => attributes_for(:volunteer)
+        assigns(:volunteer).should eq(@volunteer)
       end
 
       it "re-renders the 'edit' template" do
-        volunteer = Volunteer.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Volunteer.any_instance.stub(:save).and_return(false)
-        put :update, {:id => volunteer.to_param, :volunteer => {}}, valid_session
+        put :update, :id => @volunteer.to_param, :volunteer => attributes_for(:volunteer)
         response.should render_template("edit")
       end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested volunteer" do
-      volunteer = Volunteer.create! valid_attributes
-      expect {
-        delete :destroy, {:id => volunteer.to_param}, valid_session
-      }.to change(Volunteer, :count).by(-1)
-    end
-
-    it "redirects to the volunteers list" do
-      volunteer = Volunteer.create! valid_attributes
-      delete :destroy, {:id => volunteer.to_param}, valid_session
-      response.should redirect_to(volunteers_url)
     end
   end
 

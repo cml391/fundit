@@ -1,11 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :participation do
+  factory :follow do
     volunteer
-    event
-
-    note "I like doing things."
-    goal 100
+    organization
   end
 end
+

@@ -1,5 +1,5 @@
 class Donation < ActiveRecord::Base
-  attr_accessible :amount, :stripe_token, :message, :name, :is_name_private, :is_amount_private, :is_message_private, :email
+  attr_accessible :amount, :stripe_token, :message, :name, :is_name_private, :is_amount_private, :is_message_private, :email, :thank_you_sent
   belongs_to :participation
 
   validates :amount, :presence => true, :numericality => {:only_integer => true, :greater_than => 0}

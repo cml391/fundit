@@ -13,7 +13,6 @@ class ParticipationsController < ApplicationController
     @participation = Participation.find(params[:id])
     @volunteer = @participation.volunteer
 
-    # TODO: update once we have offline donations
     @offline_perc = @participation.offline_donation_percent
     @online_perc = @participation.donation_percent
     @donation = Donation.new
@@ -30,7 +29,6 @@ class ParticipationsController < ApplicationController
     # if the volunteer id is 0, it means the user tried to participate while
     # logged out, got redirected to login, and then redirected back. Redirect
     # them to the right url.
-    puts params[:volunteer_id]
     if params[:volunteer_id] == '0'
       return redirect_to new_volunteer_participation_url(current_user, request.query_parameters)
     end
@@ -80,12 +78,6 @@ class ParticipationsController < ApplicationController
         format.json { render json: @participation.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  # GET /volunteers/1/participations/1
-  # GET /volunteers/1/participations/1.json
-  def donate_form
-    @donation = Donation.new
   end
 
   # POST /volunteers/1/participations/1
