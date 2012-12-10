@@ -46,7 +46,7 @@ class EventsController < ApplicationController
     @event.organization = current_user
 
     @event.organization.follows.each do | follow |    
-      Pony.mail :to => "\"#{@follow.volunteer.name}\" <#{@follow.volunteer.email}>",
+      Pony.mail :to => "\"#{follow.volunteer.name}\" <#{follow.volunteer.email}>",
             :from => "FundIt <fundit@fundit.org>",
             :subject => "#{@event.organization} just created #{@event.name}.",
             :body => "Check it out at http://fundit.herokuapp.com/organizations/#{@event.organization.id}/events/#{@event.id}."
