@@ -123,7 +123,7 @@
                     <p>No donations yet.</p>
                 <% else %>
     				<table class="table">
-    					<% (@participation.donations + @participation.offline_donations).order("created_at DESC").each do |donation| %>
+    					<% (@participation.donations + @participation.offline_donations).reverse.each do |donation| %>
 							<tr>
 								<td class="date"> <%= donation.created_at ? donation.created_at.strftime('%m/%d') : 'none' %></td>
 								<% if @volunteer == current_user %>
