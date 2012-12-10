@@ -1,10 +1,10 @@
 class Event < ActiveRecord::Base
-  attr_accessible :description, :name, :date, :solicit_email, :thank_you_email
+  attr_accessible :description, :name, :date, :solicit_email, :thank_you_email, :time, :location
   belongs_to :organization
   has_many :participations
   has_many :volunteers, :through => :participations
 
-  validates :name, :organization_id, :presence => true
+  validates :name, :organization_id, :date, :time, :location, :presence => true
 
   after_initialize :init_msgs
 

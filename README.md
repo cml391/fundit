@@ -37,4 +37,5 @@ It can be run with `rake spec`.
 * [BalusC, Form clear button](http://stackoverflow.com/a/2803922)
 * [Brock Kenzler, from The Noun Project](http://thenounproject.com/noun/piggy-bank/#icon-No925)
 * [bootstrap-datepicker](http://www.eyecon.ro/bootstrap-datepicker/)
+* [bootstrap-timepicker](http://jdewit.github.com/bootstrap-timepicker/)
 

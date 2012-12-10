@@ -3,24 +3,27 @@
 			<div class="span2">
 			<%= profile_image_tag_for @organization %>
 			</div>
-			<div class="details span7">
+			<div class="details span6">
 				<p class="heading">
 					<%= @organization.name %>
 				</p>
 			</div>
-			<div class="span3 controls">
 				<% if current_user %>
 					<% if current_user == @organization %>
-						<%= link_to 'Edit Organization', edit_organization_path(@organization), :class => 'btn btn-edit' %>
+					<div class="span3 controls-border">
+						<%= link_to 'Edit Organization', edit_organization_path(@organization) %>
+						<%= link_to "CREATE EVENT", new_organization_event_path(@organization) %>
+					</div>
 					<% else %>
+					<div class="span4 controls">
 						<% if @followalready %>
 							<%= link_to 'Unfollow', unfollow_organization_path, :method => :delete, :class => 'btn btn-warning' %>
 						<% else %>
 							<%= link_to 'Follow', follow_organization_path, :method => :post, :class => 'btn btn-warning' %>
 						<% end %>
+					</div>
 					<% end %>
 				<% end %>
-			</div>
 		</div>
 	</div>
 

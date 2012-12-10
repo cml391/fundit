@@ -4,3 +4,4 @@
 
 $ ->
     $('input.date-input').datepicker()
+    $('input.time-input').timepicker({defaultTime : 'value'})

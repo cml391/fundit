@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121208235243) do
+ActiveRecord::Schema.define(:version => 20121210022846) do
 
   create_table "donations", :force => true do |t|
     t.integer  "participation_id"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20121208235243) do
     t.text     "thank_you_email"
     t.text     "solicit_email"
     t.string   "image_url"
+    t.time     "time"
+    t.string   "location"
   end
 
   create_table "follows", :force => true do |t|
