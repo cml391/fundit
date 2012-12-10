@@ -63,10 +63,10 @@
          	<div class="hero-unit-header">
 						<h2>Recent Activity</h2>
 					</div>
-					<% if @volunteer.donations.empty? %>
+					<% if @volunteer.offline_donations.empty? %>
               <p>No recent activity.</p>
           <% else %>
-						<% @volunteer.donations.reverse.first(10).each do |donation| %>
+						<% @volunteer.offline_donations.reverse.first(10).each do |donation| %>
 							<div class="search-table-entry">
 								<%= image_tag("donation.png", :class => 'icon-pic-top') %>
 								<div class="entry-text">
