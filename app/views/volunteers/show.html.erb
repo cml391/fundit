@@ -66,7 +66,7 @@
 					<% if @volunteer.donations.empty? %>
               <p>No recent activity.</p>
           <% else %>
-						<% @volunteer.donations.reverse.first(10).each do |donation| %>
+						<% @volunteer.donations.order("created_at DESC").first(10).each do |donation| %>
 							<div class="search-table-entry">
 								<%= image_tag("donation.png", :class => 'icon-pic-top') %>
 								<div class="entry-text">
