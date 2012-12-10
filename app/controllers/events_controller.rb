@@ -45,15 +45,16 @@ class EventsController < ApplicationController
     @event = Event.new(params[:event])
     @event.organization = current_user
 
-    @event.organization.follows.each do | follow |    
-      Pony.mail :to => "\"#{follow.volunteer.name}\" <#{follow.volunteer.email}>",
-            :from => "FundIt <fundit@fundit.org>",
-            :subject => "#{@event.organization.name} just created #{@event.name}.",
-            :body => "Check it out at http://fundit.herokuapp.com/organizations/#{@event.organization.id}/events/#{@event.id}."
-    end
-
     respond_to do |format|
       if @event.save
+
+        @event.organization.follows.each do | follow |    
+          Pony.mail :to => "\"#{follow.volunteer.name}\" <#{follow.volunteer.email}>",
+                :from => "FundIt <fundit@fundit.org>",
+                :subject => "#{@event.organization.name} created a new FundIt event #{@event.name}.",
+                :body => "Check it out at http://fundit.herokuapp.com/organizations/#{@event.organization.id}/events/#{@event.id}."
+        end
+
         format.html { redirect_to organization_event_url(@event.organization, @event), notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else
