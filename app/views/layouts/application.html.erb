@@ -93,6 +93,11 @@
     <script type="text/javascript">
       filepicker.setKey("<%= j FILEPICKER_KEYS['api_key'] %>");
     </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+      	$('.linebreak').html($('.linebreak').text().replace(/\n\r?/g, '<br />'));
+      });
+    </script>
 
     <%= yield :additional_scripts %>
   </body>
