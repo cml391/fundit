@@ -17,7 +17,7 @@
           <% end %>
 				</p>
 			</div>
-			<div class="span3 controls">
+			<div class="span3 controls-header">
 				<% if @event.organization == current_user %>
 					<%= link_to 'Edit Event', edit_organization_event_path(@event.organization, @event), :class => 'btn btn-edit' %>
 				<% elsif !(current_user.kind_of? Organization) %>
