@@ -34,7 +34,7 @@
     <%= f.label :time, :class => 'control-label' %>
     <div class="controls">
     	<div class="input-append">
-    		<%- time_string = @event.time.strftime("%I:%M %p") -%>
+    		<%- time_string = @event.time ? @event.time.strftime("%I:%M %p") : Time.now.strftime("%I:00 %p") -%>
 				<%= f.text_field :time, :class => 'time-input input-small', :value => time_string %>
 				<span class="add-on">
 					<i class="icon-time"></i>
@@ -52,6 +52,15 @@
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_area :description, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :image_url, "Event Image", :class => 'control-label' %>
+    <div class="controls">
+      <a class="btn filepicker-btn">Pick a file</a>
+      <br /><br />
+      <%= profile_event_image_tag_for @event %>
+      <%= f.hidden_field :image_url, :id => 'avatar_url_field' %>
     </div>
   </div>
   <div class="control-group">

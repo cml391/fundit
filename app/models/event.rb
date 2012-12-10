@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :description, :name, :date, :solicit_email, :thank_you_email, :time, :location
+  attr_accessible :description, :name, :date, :solicit_email, :thank_you_email, :time, :location, :image_url
   belongs_to :organization
   has_many :participations
   has_many :volunteers, :through => :participations

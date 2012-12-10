@@ -28,7 +28,7 @@
 								</div>
 						</div>
 						<% if @volunteer == current_user %>
-							<div class="controls span3">
+							<div class="controls-header span3">
 								<%= link_to edit_volunteer_participation_path(@volunteer, @participation), :class => 'participation-control-link' do %>
 										Edit Participation Page
 								<% end %>
@@ -129,6 +129,11 @@
 								<% if @volunteer == current_user %>
 								<td>
 									<%= donation.private_history_message %>
+									<% if donation.kind_of? Donation %>
+										<% if !donation.message.nil? %>
+										<p class="message"><%= donation.message %></p>
+										<% end %>
+									<% end %>
 								</td>
 								<td>
 
@@ -148,6 +153,11 @@
 									<% if donation.all_private != true %>
 										<td>
 											<%= donation.share_history_message %>
+											<% if donation.kind_of? Donation %>
+												<% if !donation.message.nil? && !donation.is_message_private %>
+													<p class="message"><%= donation.message %></p>
+												<% end %>
+											<% end %>
 										</td>
 									<% end %>
 								<% end %>

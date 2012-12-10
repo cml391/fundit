@@ -7,7 +7,7 @@
 	<div class="search-table-center span7">
 		<div class="hero-unit">
 			<div class="hero-unit-header"><h2>Popular Organizations</h2></div>
-				<% Organization.order("follows_count").limit(3).each do |organization| %>
+				<% Organization.order("follows_count DESC").limit(3).each do |organization| %>
 					<div class="search-table-entry highlight">
 						<%= icon_image_tag_for organization %>
 						<span><%= link_to organization.name, organization_path(organization) %><span>

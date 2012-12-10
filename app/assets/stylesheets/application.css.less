@@ -265,6 +265,7 @@ img.icon-pic-top{
 .entry-text{
 	display:inline-block;
 	padding: 0px 10px;
+	max-width: 370px;
 }
 
 .entry-text .info{
@@ -288,17 +289,21 @@ img.icon-pic-top{
 	
 	p.heading{
 		font-size: 30px;
+		line-height: 32px;
 		font-weight: bold;
+		margin-bottom: 5px;
+		display: table-cell; 
+  	vertical-align: middle;
 	}
 	
 	p.email{
 		color: #777;
 		font-weight: 600;
-		margin-top:14px;
-		margin-bottom:16px;
+		margin-top:0px;
+		margin-bottom:12px;
 	}
 	
-	.controls .btn-edit{
+	.controls-header .btn-edit{
 			text-transform:uppercase;
 			padding: 6px 20px;
 		}
@@ -375,4 +380,8 @@ textarea{
 		h2{
 			font-size: 18px;
 		}
+}
+
+.semibold{
+	font-weight: 600;
 }

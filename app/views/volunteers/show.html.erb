@@ -17,7 +17,7 @@
 				</p>
 			</div>
 			<% if @volunteer == current_user %>
-				<div class="span2 offset1 controls">
+				<div class="span2 offset1 controls-header">
 					<%= link_to 'Edit Profile', edit_volunteer_path(@volunteer), :class => 'btn btn-edit' %>
 				</div>
 			<% end %>
@@ -47,7 +47,7 @@
 								<div class="hiddeninfo hidden"%>
 									<div class="eventdescription">
 										<p><strong><%= participation.event.date ? participation.event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
-										<%= participation.event.description %>
+										<div class="linebreak"><%= participation.event.description %></div>
 									</div>
 								</div>
 							</span>
@@ -58,15 +58,15 @@
     </div>
 
     <div class="span8 main-content">
-      <div class="hero-unit recent-activity">
-         <% if @volunteer == current_user %>
+      <% if @volunteer == current_user %>
+        <div class="hero-unit recent-activity">
          	<div class="hero-unit-header">
 						<h2>Recent Activity</h2>
 					</div>
 					<% if @volunteer.donations.empty? %>
               <p>No recent activity.</p>
           <% else %>
-						<% @volunteer.donations.reverse.first(10).each do |donation| %>
+						<% @volunteer.donations.order("created_at DESC").first(10).each do |donation| %>
 							<div class="search-table-entry">
 								<%= image_tag("donation.png", :class => 'icon-pic-top') %>
 								<div class="entry-text">
@@ -90,7 +90,8 @@
 							</div>
 						<% end %>
 					<%end%>
-         <% else %>
+      <% else %>
+        <div class="hero-unit">
 					<div class="hero-unit-header">
 						<h2>Participated in (<%= @volunteer.participations.length %>)</h2>
 					</div>
@@ -103,7 +104,7 @@
 									<div class="hiddeninfo hidden"%>
 										<div class="eventdescription">
 											<p><strong><%= participation.event.date ? participation.event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
-											<%= participation.event.description %>
+											<div class="linebreak"><%= participation.event.description %></div>
 										</div>
 									</div>
 								</span>
@@ -133,4 +134,5 @@
       });
     });
   </script>
+
 <% end %>

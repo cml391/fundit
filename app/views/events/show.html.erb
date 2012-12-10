@@ -7,9 +7,11 @@
 				<p class="small-heading"> 
 					Hosted by <%= @event.organization.name %>
 				</p>
-				<p class="heading">
-					<%= @event.name %>
-				</p>
+				<div class="heading-div">
+					<p class="heading">
+						<%= @event.name %>
+					</p>
+				</div>
 				<p class="info-links">
 					<%= link_to organization_path(@event.organization)  do %>
                             <i class="icon-user"></i>
@@ -17,7 +19,7 @@
           <% end %>
 				</p>
 			</div>
-			<div class="span3 controls">
+			<div class="span3 controls-header">
 				<% if @event.organization == current_user %>
 					<%= link_to 'Edit Event', edit_organization_event_path(@event.organization, @event), :class => 'btn btn-edit' %>
 				<% elsif !(current_user.kind_of? Organization) %>
@@ -32,19 +34,19 @@
 			<table>
 				<tr>
 					<td class="table-label">DATE</td>
-					<td><%= @event.date ? @event.date.strftime('%B %d, %Y') : 'none' %></td>
+					<td class="semibold"><%= @event.date ? @event.date.strftime('%B %d, %Y') : 'none' %></td>
 				</tr>
 				<tr>
 					<td class="table-label">TIME</td>
-					<td><%= @event.time ? @event.time.strftime('%I:%M %p') : 'none'%></td>
+					<td class="semibold"><%= @event.time ? @event.time.strftime('%I:%M %p') : 'none'%></td>
 				</tr>
 				<tr>
 					<td class="table-label">LOCATION</td>
-					<td><%= @event.location %></td>
+					<td class="semibold"><%= @event.location %></td>
 				</tr>
 				<tr>
 					<td class="table-label"> DETAILS </td>
-					<td><%= @event.description %></td>
+					<td class="linebreak"><%= @event.description %></td>
 				</tr>
 			</table>
 		</div>
