@@ -129,6 +129,11 @@
 								<% if @volunteer == current_user %>
 								<td>
 									<%= donation.private_history_message %>
+									<% if donation.kind_of? Donation %>
+										<% if !donation.message.nil? %>
+										<p class="message"><%= donation.message %></p>
+										<% end %>
+									<% end %>
 								</td>
 								<td>
 
