@@ -63,7 +63,7 @@
 								<div class="hiddeninfo hidden"%>
 										<div class="eventdescription">
 											<p><strong><%= event.date ? event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
-											<%= event.description %>
+											<div class="linebreak"><%= event.description %></div>
 										</div>
 									</div>
 							</span>
@@ -82,9 +82,9 @@
 								<span class="moredetails">
 									<div class="expandbtn">+</div>
 									<div class="hiddeninfo hidden"%>
-										<div class="eventdescription linebreak">
+										<div class="eventdescription">
 											<p><strong><%= event.date ? event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
-											<%= event.description %>
+											<div class="linebreak"><%= event.description %></div>
 										</div>
 									</div>
 								</span>
@@ -112,4 +112,5 @@
       });
     });
   </script>
+  
 <% end %>

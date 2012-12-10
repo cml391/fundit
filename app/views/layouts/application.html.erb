@@ -95,7 +95,9 @@
     </script>
     <script type="text/javascript">
       $(document).ready(function(){
-      	$('.linebreak').html($('.linebreak').text().replace(/\n\r?/g, '<br />'));
+      	$('.linebreak').each(function() {
+      		$(this).html($(this).text().replace(/\n\r?/g, '<br />'))
+      		});
       });
     </script>
 

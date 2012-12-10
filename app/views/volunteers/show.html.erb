@@ -47,7 +47,7 @@
 								<div class="hiddeninfo hidden"%>
 									<div class="eventdescription">
 										<p><strong><%= participation.event.date ? participation.event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
-										<%= participation.event.description %>
+										<div class="linebreak"><%= participation.event.description %></div>
 									</div>
 								</div>
 							</span>
@@ -58,8 +58,8 @@
     </div>
 
     <div class="span8 main-content">
-      <div class="hero-unit recent-activity">
-         <% if @volunteer == current_user %>
+      <% if @volunteer == current_user %>
+        <div class="hero-unit recent-activity">
          	<div class="hero-unit-header">
 						<h2>Recent Activity</h2>
 					</div>
@@ -90,7 +90,8 @@
 							</div>
 						<% end %>
 					<%end%>
-         <% else %>
+      <% else %>
+        <div class="hero-unit">
 					<div class="hero-unit-header">
 						<h2>Participated in (<%= @volunteer.participations.length %>)</h2>
 					</div>
@@ -101,9 +102,9 @@
 								<span class="moredetails">
 									<div class="expandbtn">+</div>
 									<div class="hiddeninfo hidden"%>
-										<div class="eventdescription linebreak">
+										<div class="eventdescription">
 											<p><strong><%= participation.event.date ? participation.event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
-											<%= participation.event.description %>
+											<div class="linebreak"><%= participation.event.description %></div>
 										</div>
 									</div>
 								</span>
@@ -133,4 +134,5 @@
       });
     });
   </script>
+
 <% end %>
