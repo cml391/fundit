@@ -32,15 +32,15 @@
 			<table>
 				<tr>
 					<td class="table-label">DATE</td>
-					<td><%= @event.date ? @event.date.strftime('%B %d, %Y') : 'none' %></td>
+					<td class="semibold"><%= @event.date ? @event.date.strftime('%B %d, %Y') : 'none' %></td>
 				</tr>
 				<tr>
 					<td class="table-label">TIME</td>
-					<td><%= @event.time ? @event.time.strftime('%I:%M %p') : 'none'%></td>
+					<td class="semibold"><%= @event.time ? @event.time.strftime('%I:%M %p') : 'none'%></td>
 				</tr>
 				<tr>
 					<td class="table-label">LOCATION</td>
-					<td><%= @event.location %></td>
+					<td class="semibold"><%= @event.location %></td>
 				</tr>
 				<tr>
 					<td class="table-label"> DETAILS </td>

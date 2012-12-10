@@ -32,7 +32,7 @@
 			<table>
 				<tr>
 					<td class="table-label">EMAIL</td>
-					<td><%= @organization.email %></td>
+					<td class="semibold"><%= @organization.email %></td>
 				</tr>
 				<tr>
 					<td class="table-label"> ABOUT</td>
@@ -75,7 +75,7 @@
 								<span class="moredetails">
 									<div class="expandbtn">+</div>
 									<div class="hiddeninfo hidden"%>
-										<div class="eventdescription">
+										<div class="eventdescription linebreak">
 											<p><strong><%= event.date ? event.date.strftime('%B %d, %Y') : 'none' %></strong></p>
 											<%= event.description %>
 										</div>
