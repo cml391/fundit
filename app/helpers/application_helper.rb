@@ -1,7 +1,7 @@
 module ApplicationHelper
   def profile_image_tag_for org_or_volunteer
     if org_or_volunteer.avatar_url?
-      src = org_or_volunteer.avatar_url + '/convert?w=125'
+      src = org_or_volunteer.avatar_url + '/convert?w=125&h=125'
     else
       src = "/assets/blank-profile.png"
     end
@@ -11,7 +11,7 @@ module ApplicationHelper
   
   def icon_image_tag_for org_or_volunteer
     if org_or_volunteer.avatar_url?
-      src = org_or_volunteer.avatar_url + '/convert?w=60'
+      src = org_or_volunteer.avatar_url + '/convert?w=60&h=60'
     else
       src = "/assets/blank-profile.png"
     end
@@ -21,7 +21,7 @@ module ApplicationHelper
   
   def mini_icon_image_tag_for org_or_volunteer
     if org_or_volunteer.avatar_url?
-      src = org_or_volunteer.avatar_url + '/convert?w=40'
+      src = org_or_volunteer.avatar_url + '/convert?w=40&h=40'
     else
       src = "/assets/blank-profile.png"
     end
@@ -31,7 +31,7 @@ module ApplicationHelper
   
    def profile_event_image_tag_for event
     if event.image_url?
-      src = org_or_volunteer.image_url + '/convert?w=125'
+      src = org_or_volunteer.image_url + '/convert?w=125&h=125'
     else
       src = "/assets/blank-event.png"
     end
@@ -41,7 +41,7 @@ module ApplicationHelper
   
   def icon_event_image_tag_for event
     if event.image_url?
-      src = org_or_volunteer.image_url + '/convert?w=60'
+      src = org_or_volunteer.image_url + '/convert?w=60&h=60'
     else
       src = "/assets/blank-event.png"
     end
