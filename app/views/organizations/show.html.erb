@@ -15,7 +15,7 @@
 						<%= link_to "CREATE EVENT", new_organization_event_path(@organization) %>
 					</div>
 					<% else %>
-					<div class="span4 controls">
+					<div class="span4 controls-header">
 						<% if @followalready %>
 							<%= link_to 'Unfollow', unfollow_organization_path, :method => :delete, :class => 'btn btn-warning' %>
 						<% else %>

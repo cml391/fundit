@@ -31,7 +31,7 @@ module ApplicationHelper
   
    def profile_event_image_tag_for event
     if event.image_url?
-      src = org_or_volunteer.image_url + '/convert?w=125&h=125&fit=crop'
+      src = event.image_url + '/convert?w=125&h=125&fit=crop'
     else
       src = "/assets/blank-event.png"
     end
@@ -41,7 +41,7 @@ module ApplicationHelper
   
   def icon_event_image_tag_for event
     if event.image_url?
-      src = org_or_volunteer.image_url + '/convert?w=60&h=60&fit=crop'
+      src = event.image_url + '/convert?w=60&h=60&fit=crop'
     else
       src = "/assets/blank-event.png"
     end

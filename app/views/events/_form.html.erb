@@ -55,6 +55,15 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :image_url, "Event Image", :class => 'control-label' %>
+    <div class="controls">
+      <a class="btn filepicker-btn">Pick a file</a>
+      <br /><br />
+      <%= profile_event_image_tag_for @event %>
+      <%= f.hidden_field :image_url, :id => 'avatar_url_field' %>
+    </div>
+  </div>
+  <div class="control-group">
     <label>Canned Messages</label>
     <div class="controls">
       Help your volunteers out by providing them messages to send to their
