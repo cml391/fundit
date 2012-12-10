@@ -153,6 +153,11 @@
 									<% if donation.all_private != true %>
 										<td>
 											<%= donation.share_history_message %>
+											<% if donation.kind_of? Donation %>
+												<% if !donation.message.nil? && !donation.is_message_private %>
+													<p class="message"><%= donation.message %></p>
+												<% end %>
+											<% end %>
 										</td>
 									<% end %>
 								<% end %>
