@@ -7,9 +7,11 @@
 				<p class="small-heading"> 
 					Hosted by <%= @event.organization.name %>
 				</p>
-				<p class="heading">
-					<%= @event.name %>
-				</p>
+				<div class="heading-div">
+					<p class="heading">
+						<%= @event.name %>
+					</p>
+				</div>
 				<p class="info-links">
 					<%= link_to organization_path(@event.organization)  do %>
                             <i class="icon-user"></i>

@@ -4,8 +4,15 @@
 			<%= profile_image_tag_for @organization %>
 			</div>
 			<div class="details span6">
-				<p class="heading">
-					<%= @organization.name %>
+				<div class="heading-div">
+					<p class="heading"><%= @organization.name %></p>
+				</div>
+				<p class="follows-count">
+					<% if @organization.follows.length == 1 %>
+						<strong><%= @organization.follows.length %></strong> Follower
+					<% else %>
+						<strong><%= @organization.follows.length %></strong> Followers
+					<% end %>
 				</p>
 			</div>
 				<% if current_user %>
