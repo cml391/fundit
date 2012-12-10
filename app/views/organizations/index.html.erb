@@ -13,7 +13,10 @@
 						<span><%= link_to organization.name, organization_path(organization) %><span>
 					</div>
 				<% end %>
-			<div class="hero-unit-header margin-top"><h2>All Organizations (<%= @organizations.size %>)</h2></div>
+			<div class="hero-unit-header margin-top">
+				<h2 class="main-header">All Organizations (<%= @organizations.size %>)</h2>
+				<h3 class="search-header"></h3>
+			</div>
 				<% @organizations.each do |organization| %>
 					<div class="search-table-entry">
 						<%= icon_image_tag_for organization %>

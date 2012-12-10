@@ -4,6 +4,8 @@ Search =
 
         if query.length == 0
             $(".search-table-entry").slideDown()
+            $(".main-header").show()
+            $(".search-header").html ""
         else
             $(".search-table-entry")
                 .filter(":Contains(#{query})")
@@ -11,7 +13,10 @@ Search =
                 .end()
                 .not(":Contains(#{query})")
                     .slideUp()
-
+            $(".main-header").hide()
+            $(".search-header")
+            		.html "<strong>Search results for:</strong> " + query 
+        
 $ ->
     $('.search-query').keyup Search.filter
 

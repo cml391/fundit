@@ -2,3 +2,21 @@
   <h1>Edit Volunteer</h1>
 </div>
 <%= render :partial => 'form' %>
+
+<% content_for :additional_scripts do %>
+  <script  type="text/javascript">
+    $(document).ready(function() {
+    	var characters = 220;
+    	$("#counter").append("You have <strong>"+  characters+"</strong> characters remaining");
+    	$("#about_volunteer").keyup(function(){
+        if($(this).val().length > characters){
+       		$(this).val($(this).val().substr(0, characters));
+        }
+    		var remaining = characters -  $(this).val().length;
+   	 		$("#counter").html("You have <strong>"+  remaining+"</strong> characters remaining");
+   	 	});
+   	 	$('#about_volunteer').keyup();
+   });
+  </script>
+<% end %>
+

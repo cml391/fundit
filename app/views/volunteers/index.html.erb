@@ -6,7 +6,10 @@
 	</div>
 	<div class="search-table-center span7">
 		<div class="hero-unit">
-			<div class="hero-unit-header"><h2>Volunteers (<%= @volunteers.size %>)</h2></div>
+			<div class="hero-unit-header">
+				<h2 class="main-header">Volunteers (<%= @volunteers.size %>)</h2>
+				<h3 class="search-header"></h3>
+			</div>
 				<% @volunteers.each do |volunteer| %>
 					<div class="search-table-entry">
 						<%= icon_image_tag_for volunteer %>
