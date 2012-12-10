@@ -37,6 +37,10 @@ Fundit::Application.routes.draw do
   match '/login' => 'sessions#create', :via => :post
   match '/logout' => 'sessions#destroy', :via => :delete, :as => 'logout'
 
+  constraints lambda { |req| !req.session[:user_id].blank? } do
+    root :to => "events#index"
+  end
+
   root :to => 'home#index'
 
   # The priority is based upon order of creation:
